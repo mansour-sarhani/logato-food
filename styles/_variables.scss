@@ -1,0 +1,66 @@
+/* Primary Colors */
+$primary-color: #FF6347;
+$secondary-color: #FFD700;
+
+/* Accent Colors */
+$accent-color: #FF4500;
+$highlight-color: #32CD32;
+
+/* Status Colors */
+$success-color: #28a745; 
+$warning-color: #ffc107; 
+$info-color: #17a2b8; 
+$error-color: #dc3545; 
+
+/* Dark Mode Status Colors */
+$success-color-dark: #28a745; 
+$warning-color-dark: #ffc107; 
+$info-color-dark: #17a2b8; 
+$error-color-dark: #dc3545; 
+
+/* Text Colors */
+$text-dark: #333333;
+$text-light: #FFFFFF;
+
+/* Background Colors */
+$background-light: #F5F5F5;
+$background-dark: #2F4F4F;
+
+/* Border Color */
+$border-color: #D1D1D1;
+
+/* Dark Mode Colors */
+$primary-color-dark: #FF6347; 
+$secondary-color-dark: #FFD700; 
+$accent-color-dark: #FF4500; 
+$highlight-color-dark: #32CD32; 
+
+$text-dark-mode: #E0E0E0; // Light grey for text in dark mode
+$text-light-mode: #FFFFFF; // White for text in dark mode
+
+$background-light-mode: #121212; // Very dark grey for dark mode background
+$background-dark-mode: #1E1E1E; // Dark grey for dark mode background
+
+$border-color-dark: #444444; // Dark grey for borders in dark mode
+
+/* Form Input Colors */
+$input-background-light: #FFFFFF;
+$input-background-dark: #333333;
+$input-text-light: #333333;
+$input-text-dark: #E0E0E0;
+
+/* Border Radius */
+$border-radius-small: 4px;
+$border-radius-medium: 8px;
+$border-radius-large: 16px;
+
+/* Transition Variables */
+$all-transition: all 0.3s ease-in-out;
+$btn-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                 box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                 border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+                 color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+$box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+0px 1px 3px 0px rgba(0, 0, 0, 0.12);
