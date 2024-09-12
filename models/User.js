@@ -89,7 +89,7 @@ const userSchema = new Schema(
 		avatar: {
 			path: {
 				type: String,
-				default: "/images/storage/users/",
+				default: "/assets/images/storage/users/",
 			},
 			img: {
 				type: String,

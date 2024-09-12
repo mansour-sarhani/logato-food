@@ -18,7 +18,7 @@ const typeSchema = new Schema(
 		image: {
 			path: {
 				type: String,
-				default: "/images/storage/types/",
+				default: "/assets/images/storage/types/",
 			},
 			img: {
 				type: String,
@@ -59,7 +59,7 @@ const typeSchema = new Schema(
 					image: {
 						path: {
 							type: String,
-							default: "/images/storage/types/categories/",
+							default: "/assets/images/storage/types/categories/",
 						},
 						img: {
 							type: String,
@@ -104,7 +104,7 @@ const typeSchema = new Schema(
 									path: {
 										type: String,
 										default:
-											"/images/storage/types/categories/",
+											"/assets/images/storage/types/categories/",
 									},
 									img: {
 										type: String,
