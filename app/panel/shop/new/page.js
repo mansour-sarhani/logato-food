@@ -1,5 +1,9 @@
 import { Suspense } from "react";
-import NewShopPage from "@/templates/panel/NewShopPage";
+import dynamic from "next/dynamic";
+
+const NewShopPage = dynamic(() => import("@/templates/panel/NewShopPage"), {
+	ssr: false,
+});
 
 export const metadata = {
 	title: "لوگاتو |  فروشگاه جدید",
