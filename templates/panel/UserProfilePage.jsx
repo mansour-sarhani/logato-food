@@ -39,8 +39,8 @@ export default function UserProfilePage() {
 
 	const user = useSelector((state) => state.user.data);
 
-	const register = searchParams.get("register");
-	const login = searchParams.get("login");
+	// const register = searchParams.get("register");
+	// const login = searchParams.get("login");
 
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - shops.length) : 0;
@@ -59,18 +59,38 @@ export default function UserProfilePage() {
 		setDoReload(!doReload);
 	};
 
+	// useEffect(() => {
+	// 	if (register === "success") {
+	// 		router.replace("/panel/profile");
+	// 		enqueueSnackbar("ثبت نام شما با موفقیت انجام شد.", {
+	// 			variant: "success",
+	// 		});
+	// 	}
+	// 	if (login === "success") {
+	// 		router.replace("/panel/profile");
+	// 		enqueueSnackbar("خوش آمدید.", {
+	// 			variant: "success",
+	// 		});
+	// 	}
+	// }, [searchParams]);
+
 	useEffect(() => {
-		if (register === "success") {
-			router.replace("/panel/profile");
-			enqueueSnackbar("ثبت نام شما با موفقیت انجام شد.", {
-				variant: "success",
-			});
-		}
-		if (login === "success") {
-			router.replace("/panel/profile");
-			enqueueSnackbar("خوش آمدید.", {
-				variant: "success",
-			});
+		if (typeof window !== "undefined") {
+			const register = searchParams.get("register");
+			const login = searchParams.get("login");
+
+			if (register === "success") {
+				router.replace("/panel/profile");
+				enqueueSnackbar("ثبت نام شما با موفقیت انجام شد.", {
+					variant: "success",
+				});
+			}
+			if (login === "success") {
+				router.replace("/panel/profile");
+				enqueueSnackbar("خوش آمدید.", {
+					variant: "success",
+				});
+			}
 		}
 	}, [searchParams]);
 
