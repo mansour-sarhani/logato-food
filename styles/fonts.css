@@ -1,23 +1,26 @@
 @font-face {
 	font-family: "IranYekan";
-	src: url("/fonts/IRANYekanWebRegular.eot?#iefix")
+	src: url("/assets/fonts/IRANYekanWebRegular.eot?#iefix")
 			format("embedded-opentype"),
-		/* IE6-IE8 */ url("/fonts/IRANYekanWebRegular.woff2") format("woff2"),
-		/* Super Modern Browsers */ url("/fonts/IRANYekanWebRegular.woff")
-			format("woff"),
-		/* Pretty Modern Browsers */ url("/fonts/IRANYekanWebRegular.ttf")
-			format("truetype"); /* Safari, Android, iOS */
+		/* IE6-IE8 */ url("/assets/fonts/IRANYekanWebRegular.woff2")
+			format("woff2"),
+		/* Super Modern Browsers */
+			url("/assets/fonts/IRANYekanWebRegular.woff") format("woff"),
+		/* Pretty Modern Browsers */
+			url("/assets/fonts/IRANYekanWebRegular.ttf") format("truetype"); /* Safari, Android, iOS */
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: "IranYekanBold";
-	src: url("/fonts/IRANYekanWebBold.eot?#iefix") format("embedded-opentype"),
-		/* IE6-IE8 */ url("/fonts/IRANYekanWebBold.woff2") format("woff2"),
-		/* Super Modern Browsers */ url("/fonts/IRANYekanWebBold.woff")
+	src: url("/assets/fonts/IRANYekanWebBold.eot?#iefix")
+			format("embedded-opentype"),
+		/* IE6-IE8 */ url("/assets/fonts/IRANYekanWebBold.woff2")
+			format("woff2"),
+		/* Super Modern Browsers */ url("/assets/fonts/IRANYekanWebBold.woff")
 			format("woff"),
-		/* Pretty Modern Browsers */ url("/fonts/IRANYekanWebBold.ttf")
+		/* Pretty Modern Browsers */ url("/assets/fonts/IRANYekanWebBold.ttf")
 			format("truetype"); /* Safari, Android, iOS */
 	font-weight: bold;
 	font-style: bold;
@@ -25,11 +28,13 @@
 
 @font-face {
 	font-family: "Vazir";
-	src: url("/fonts/Vazir-Regular-FD.eot?#iefix") format("embedded-opentype"),
-		/* IE6-IE8 */ url("/fonts/Vazir-Regular-FD.woff2") format("woff2"),
-		/* Super Modern Browsers */ url("/fonts/Vazir-Regular-FD.woff")
+	src: url("/assets/fonts/Vazir-Regular-FD.eot?#iefix")
+			format("embedded-opentype"),
+		/* IE6-IE8 */ url("/assets/fonts/Vazir-Regular-FD.woff2")
+			format("woff2"),
+		/* Super Modern Browsers */ url("/assets/fonts/Vazir-Regular-FD.woff")
 			format("woff"),
-		/* Pretty Modern Browsers */ url("/fonts/Vazir-Regular-FD.ttf")
+		/* Pretty Modern Browsers */ url("/assets/fonts/Vazir-Regular-FD.ttf")
 			format("truetype"); /* Safari, Android, iOS */
 	font-weight: normal;
 	font-style: normal;
@@ -37,11 +42,12 @@
 
 @font-face {
 	font-family: "VazirBold";
-	src: url("/fonts/Vazir-Bold-FD.eot?#iefix") format("embedded-opentype"),
-		/* IE6-IE8 */ url("/fonts/Vazir-Bold-FD.woff2") format("woff2"),
-		/* Super Modern Browsers */ url("/fonts/Vazir-Bold-FD.woff")
+	src: url("/assets/fonts/Vazir-Bold-FD.eot?#iefix")
+			format("embedded-opentype"),
+		/* IE6-IE8 */ url("/assets/fonts/Vazir-Bold-FD.woff2") format("woff2"),
+		/* Super Modern Browsers */ url("/assets/fonts/Vazir-Bold-FD.woff")
 			format("woff"),
-		/* Pretty Modern Browsers */ url("/fonts/Vazir-Bold-FD.ttf")
+		/* Pretty Modern Browsers */ url("/assets/fonts/Vazir-Bold-FD.ttf")
 			format("truetype"); /* Safari, Android, iOS */
 	font-weight: bold;
 	font-style: bold;

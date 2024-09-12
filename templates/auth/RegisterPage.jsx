@@ -14,7 +14,7 @@ export default function RegisterPage() {
 					</div>
 					<div className="auth-page-image">
 						<Image
-							src="/images/front/register.svg"
+							src="/assets/images/front/register.svg"
 							width={700}
 							height={645}
 							alt="ثبت نام"

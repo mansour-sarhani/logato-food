@@ -1,6 +1,6 @@
 import L from "leaflet";
-import marker from "@/public/marker-icon.png";
-import shadow from "@/public/marker-shadow.png";
+import marker from "@/public/assets/images/front/marker-icon.png";
+import shadow from "@/public/assets/images/front/marker-shadow.png";
 
 export const LTMarker = new L.Icon({
 	iconUrl: marker.src,

@@ -62,15 +62,30 @@ export async function POST(req) {
 			const uniqueName = uuidv4() + path.extname(imageFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/products/",
+				"public/assets/images/storage/products/",
 				uniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/products",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await imageFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
 
 			productData.image = {
-				path: "/images/storage/products/",
+				path: "/assets/images/storage/products/",
 				img: uniqueName,
 			};
 		}
@@ -235,9 +250,24 @@ export async function PUT(req) {
 			const uniqueName = uuidv4() + path.extname(imageFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/products/",
+				"public/assets/images/storage/products/",
 				uniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/products",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await imageFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
@@ -246,7 +276,7 @@ export async function PUT(req) {
 			if (product.image.img) {
 				const oldImagePath = path.join(
 					process.cwd(),
-					"public/images/storage/products/",
+					"public/assets/images/storage/products/",
 					product.image.img
 				);
 				if (fs.existsSync(oldImagePath)) {

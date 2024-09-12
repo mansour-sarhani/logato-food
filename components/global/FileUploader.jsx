@@ -145,7 +145,7 @@ const FileUploader = ({ title, name, number, stain }) => {
 						width={80}
 						height={80}
 						alt="Upload img"
-						src="/images/front/upload.webp"
+						src="/assets/images/front/upload.webp"
 						className={styles.thumbImage}
 					/>
 					<Box

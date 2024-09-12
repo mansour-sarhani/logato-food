@@ -221,16 +221,17 @@ export async function PUT(req) {
 			const uniqueName = uuidv4() + path.extname(imageFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/types/",
+				"public/assets/images/storage/types/",
 				uniqueName
 			);
 
 			// Ensure the directories exist
 			const directories = [
 				"public",
-				"public/images",
-				"public/images/storage",
-				"public/images/storage/types",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/types",
 			];
 
 			directories.forEach((dir) => {
@@ -246,7 +247,7 @@ export async function PUT(req) {
 			if (type.image.img) {
 				const oldImagePath = path.join(
 					process.cwd(),
-					"public/images/storage/types/",
+					"public/assets/images/storage/types/",
 					type.image.img
 				);
 				if (fs.existsSync(oldImagePath)) {

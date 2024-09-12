@@ -32,7 +32,7 @@ export default function LoginPage() {
 					</div>
 					<div className="auth-page-image">
 						<Image
-							src="/images/front/login.svg"
+							src="/assets/images/front/login.svg"
 							width={700}
 							height={645}
 							alt="ورود"

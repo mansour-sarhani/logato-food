@@ -201,9 +201,24 @@ export async function PUT(req) {
 			const uniqueName = uuidv4() + path.extname(avatarFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/users/",
+				"public/assets/images/storage/users/",
 				uniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/users",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await avatarFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
@@ -212,7 +227,7 @@ export async function PUT(req) {
 			if (user.avatar.img) {
 				const oldImagePath = path.join(
 					process.cwd(),
-					"public/images/storage/users/",
+					"public/assets/images/storage/users/",
 					user.avatar.img
 				);
 				if (fs.existsSync(oldImagePath)) {
