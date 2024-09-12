@@ -3,10 +3,11 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useSnackbar } from "notistack";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userSearchAll from "@/functions/user/userSearchAll";
 import getAllCities from "@/functions/city/getAllCities";
 import getAllTypes from "@/functions/type/getAllTypes";
+import getCategoriesByTypeValue from "@/functions/category/getCategoriesOfType";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -14,10 +15,10 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
-import { Typography } from "@mui/material";
-import getCategoriesByTypeValue from "@/functions/category/getCategoriesOfType";
+import Typography from "@mui/material/Typography";
+import debounce from "lodash/debounce";
 
-export default function SearchSidebar({ data, setData }) {
+export default function SearchSidebar({ setData }) {
 	const [page, setPage] = useState(1);
 	const [limit, setLimit] = useState(10);
 	const [total, setTotal] = useState(0);
@@ -39,17 +40,21 @@ export default function SearchSidebar({ data, setData }) {
 	const pathname = usePathname();
 	const { enqueueSnackbar } = useSnackbar();
 
+	const loading = useSelector((state) => state.user.status);
+
 	const city = searchParams.get("city");
 	const type = searchParams.get("type");
+	const termQuery = searchParams.get("term");
 	const category = searchParams.get("category");
 	const subCategory = searchParams.get("subCategory");
 	const latitude = searchParams.get("latitude");
 	const longitude = searchParams.get("longitude");
-	const termQuery = searchParams.get("term");
 	const pageQuery = searchParams.get("page");
 	const limitQuery = searchParams.get("limit");
 	const sortByQuery = searchParams.get("sortBy");
 	const orderQuery = searchParams.get("order");
+
+	const query = searchParams.toString();
 
 	const createQueryString = useCallback(
 		(name, value) => {
@@ -61,13 +66,13 @@ export default function SearchSidebar({ data, setData }) {
 	);
 
 	const searchByTerm = useCallback(
-		(e) => {
+		debounce((e) => {
 			setTerm(e.target.value);
 			router.push(
 				`${pathname}?${createQueryString("term", e.target.value)}`
 			);
 			setDoReload(!doReload);
-		},
+		}, 500),
 		[createQueryString, pathname, router, setDoReload]
 	);
 
@@ -113,61 +118,45 @@ export default function SearchSidebar({ data, setData }) {
 		});
 	};
 
-	async function fetchInitialData() {
-		const data = {
-			term: termQuery || term,
-			city: selectedCity || city,
-			type: selectedType || type,
-			category: selectedCategory || category,
-			subCategory: selectedSubCategory || subCategory,
-			latitude,
-			longitude,
-			page: pageQuery || page,
-			limit: limitQuery || limit,
-			sortBy: sortByQuery || sortBy,
-			order: orderQuery || order,
-		};
-
-		await userSearchAll(
-			dispatch,
-			enqueueSnackbar,
-			data,
-			setData,
-			setPage,
-			setLimit,
-			setTotal
-		);
-	}
+	const handleSearchClick = () => {
+		router.push(`${pathname}?${createQueryString("term", term)}`);
+		setDoReload(!doReload);
+	};
 
 	useEffect(() => {
-		fetchInitialData();
-	}, [doReload]);
-
-	useEffect(() => {
-		async function fetchData() {
+		async function fetchInitialData() {
 			await getAllCities(dispatch, enqueueSnackbar, setCities);
 			await getAllTypes(dispatch, enqueueSnackbar, setTypes);
+
+			if (termQuery) {
+				setTerm(termQuery);
+			}
+			if (city) {
+				setSelectedCity(city);
+			}
+			if (type) {
+				setSelectedType(type);
+				getCategoriesByTypeValue(
+					dispatch,
+					enqueueSnackbar,
+					type,
+					setCategories
+				);
+			}
 		}
-		fetchData();
+		fetchInitialData();
 	}, []);
 
-	useEffect(() => {
-		if (termQuery) {
-			setTerm(termQuery);
-		}
-		if (city) {
-			setSelectedCity(city);
-		}
-		if (type) {
-			setSelectedType(type);
-			getCategoriesByTypeValue(
-				dispatch,
-				enqueueSnackbar,
-				type,
-				setCategories
-			);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (query) {
+	// 		async function getSearchData() {
+	// 			await userSearchAll(dispatch, enqueueSnackbar, query, setData);
+	// 		}
+	// 		getSearchData();
+	// 	} else {
+	// 		return;
+	// 	}
+	// }, [searchParams]);
 
 	return (
 		<div className="search-sidebar-container">

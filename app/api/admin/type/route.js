@@ -51,15 +51,30 @@ export async function POST(req) {
 			const uniqueName = uuidv4() + path.extname(imageFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/types/",
+				"public/assets/images/storage/types/",
 				uniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/types",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await imageFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
 
 			typeData.image = {
-				path: "/images/storage/types/",
+				path: "/assets/images/storage/types/",
 				img: uniqueName,
 			};
 		}
@@ -209,6 +224,20 @@ export async function PUT(req) {
 				"public/images/storage/types/",
 				uniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/images",
+				"public/images/storage",
+				"public/images/storage/types",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await imageFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);

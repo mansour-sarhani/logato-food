@@ -18,7 +18,11 @@ export default function HomeSearch() {
 			initialValues={initialValues}
 			onSubmit={async (values, { setSubmitting }) => {
 				const term = values.term;
-				router.push(`/search?term=${term}`);
+				if (term) {
+					router.push(`/search-results?term=${term}`);
+				} else {
+					router.push(`/search-results`);
+				}
 				setSubmitting(false);
 			}}
 		>
