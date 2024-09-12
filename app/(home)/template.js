@@ -34,32 +34,36 @@ export default function HomeTemplate({ children }) {
 
 	useEffect(() => {
 		if (currentToken) {
+			console.log("has-token");
 			getUser(dispatch, enqueueSnackbar, setUser);
 		} else {
+			console.log("no-token");
 			setUser(false);
 		}
 	}, [currentToken, dispatch, enqueueSnackbar]);
 
 	useEffect(() => {
 		if (user === false && pathname.startsWith("/panel/")) {
+			console.log("redirect");
 			router.push("/auth/login");
 		}
 	}, [user, pathname, router]);
 
-	// if ((loading === "idle" || loading === "loading") && !user) {
-	// 	return <Loading isLoading={isLoading} />;
-	// } else {
-	// 	return (
-	// 		<div className="home-page">
-	// 			<Header user={user} />
-	// 			{children}
-	// 		</div>
-	// 	);
-	// }
-	return (
-		<div className="home-page">
-			<Header user={user} />
-			{children}
-		</div>
-	);
+	if ((loading === "idle" || loading === "loading") && !user) {
+		console.log("loading");
+		return <Loading isLoading={isLoading} />;
+	} else {
+		return (
+			<div className="home-page">
+				<Header user={user} />
+				{children}
+			</div>
+		);
+	}
+	// return (
+	// 	<div className="home-page">
+	// 		<Header user={user} />
+	// 		{children}
+	// 	</div>
+	// );
 }
