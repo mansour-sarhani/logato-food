@@ -78,15 +78,30 @@ export async function POST(req) {
 			const imageUniqueName = uuidv4() + path.extname(logoFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/shops/",
+				"public/assets/images/storage/shops/",
 				imageUniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/shops",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await logoFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
 
 			shopData.logo = {
-				path: "/images/storage/shops/",
+				path: "/assets/images/storage/shops/",
 				img: imageUniqueName,
 			};
 		}
@@ -103,15 +118,30 @@ export async function POST(req) {
 			const coverUniqueName = uuidv4() + path.extname(coverFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/shops/",
+				"public/assets/images/storage/shops/",
 				coverUniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/shops",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await coverFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
 
 			shopData.cover = {
-				path: "/images/storage/shops/",
+				path: "/assets/images/storage/shops/",
 				img: coverUniqueName,
 			};
 		}
@@ -383,9 +413,24 @@ export async function PUT(req) {
 			const imageUniqueName = uuidv4() + path.extname(logoFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/shops/",
+				"public/assets/images/storage/shops/",
 				imageUniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/shops",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await logoFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
@@ -394,7 +439,7 @@ export async function PUT(req) {
 			if (shop.logo.img) {
 				const oldImagePath = path.join(
 					process.cwd(),
-					"public/images/storage/shops/",
+					"public/assets/images/storage/shops/",
 					shop.logo.img
 				);
 				if (fs.existsSync(oldImagePath)) {
@@ -417,9 +462,24 @@ export async function PUT(req) {
 			const coverUniqueName = uuidv4() + path.extname(coverFile.name);
 			const savePath = path.join(
 				process.cwd(),
-				"public/images/storage/shops/",
+				"public/assets/images/storage/shops/",
 				coverUniqueName
 			);
+
+			// Ensure the directories exist
+			const directories = [
+				"public",
+				"public/assets",
+				"public/assets/images",
+				"public/assets/images/storage",
+				"public/assets/images/storage/shops",
+			];
+
+			directories.forEach((dir) => {
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir, { recursive: true });
+				}
+			});
 
 			const buffer = Buffer.from(await coverFile.arrayBuffer());
 			fs.writeFileSync(savePath, buffer);
@@ -428,7 +488,7 @@ export async function PUT(req) {
 			if (shop.cover.img) {
 				const oldImagePath = path.join(
 					process.cwd(),
-					"public/images/storage/shops/",
+					"public/assets/images/storage/shops/",
 					shop.cover.img
 				);
 				if (fs.existsSync(oldImagePath)) {
