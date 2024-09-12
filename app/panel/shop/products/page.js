@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ProductPage from "@/templates/panel/ProductPage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelProduct() {
-	return <ProductPage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<ProductPage />
+		</Suspense>
+	);
 }

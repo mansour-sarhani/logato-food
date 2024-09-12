@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import UserProfilePage from "@/templates/panel/UserProfilePage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelProfile() {
-	return <UserProfilePage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<UserProfilePage />;
+		</Suspense>
+	);
 }

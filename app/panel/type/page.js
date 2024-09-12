@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import TypePage from "@/templates/panel/TypePage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelType() {
-	return <TypePage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<TypePage />
+		</Suspense>
+	);
 }
