@@ -30,7 +30,7 @@ export default function SearchPage() {
 			<div className="lt-container">
 				<div className="page-wrapper front-page-wrapper">
 					<div className="sidebar">
-						<SearchSidebar data={data} setData={setData} />
+						<SearchSidebar setData={setData} />
 					</div>
 					<div className="content">
 						<div className="search-results">

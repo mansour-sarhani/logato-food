@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Skeleton from "@mui/material/Skeleton";
 
 export default function TypesGrid() {
-	const [types, setTypes] = useState([]);
+	const [types, setTypes] = useState();
 
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
@@ -29,7 +29,7 @@ export default function TypesGrid() {
 					/>
 					<Skeleton
 						sx={{ bgcolor: "grey.900" }}
-						key={i}
+						key={i + 99}
 						variant="text"
 						width={80}
 						animation="wave"
@@ -47,7 +47,7 @@ export default function TypesGrid() {
 		fetchShopTypes();
 	}, []);
 
-	return types.length === 0 ? (
+	return !types ? null : types.length === 0 ? (
 		<div className="shop-types-container">
 			<div className="shop-types-grid">{createSkeletons()}</div>
 		</div>
@@ -59,7 +59,7 @@ export default function TypesGrid() {
 						key={type.id}
 						className="shop-type-item"
 						onClick={() =>
-							router.push(`/search?type=${type.value}`)
+							router.push(`/search-results?type=${type.value}`)
 						}
 					>
 						<LTImage

@@ -134,21 +134,12 @@ export const USER_SEARCH_FOR_TERM = createAsyncThunk(
 		}
 	}
 );
+
 export const USER_SEARCH_ALL_QUERY = createAsyncThunk(
 	"user/USER_SEARCH_ALL_QUERY",
-	async (data, { rejectWithValue }) => {
+	async (query, { rejectWithValue }) => {
 		try {
-			// Filter out undefined values
-			const filteredData = Object.fromEntries(
-				Object.entries(data).filter(([_, v]) => v != null)
-			);
-
-			// Construct query string
-			const queryString = new URLSearchParams(filteredData).toString();
-			const response = await http.get(
-				// `/api/search?term=${data.term}&city=${data.cityId}&shopType=${data.shopTypeId}&category=${data.categoryId}&subCategory=${data.subCategoryId}&latitude=${data.latitude}&longitude=${data.longitude}&page=${data.page}&limit=${data.limit}&sortBy=${data.sortBy}&order=${data.order}`
-				`/api/search?${queryString}`
-			);
+			const response = await http.get(`/api/search?${query}`);
 			return response.data;
 		} catch (err) {
 			if (!err.response) {

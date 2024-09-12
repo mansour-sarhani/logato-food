@@ -42,13 +42,11 @@ export async function GET(request) {
 			query.longitude = parseFloat(longitude);
 		}
 
-		// Execute the search query
 		const results = await Shop.find(query)
 			.skip((page - 1) * limit)
 			.limit(limit)
 			.sort({ [sortBy]: order });
 
-		// Get the shops
 		const shopResults = results.map((shop) => {
 			return {
 				id: shop._id,
