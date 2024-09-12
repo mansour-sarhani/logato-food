@@ -17,7 +17,7 @@ export default function HomeTemplate({ children }) {
 	const loading = useSelector((state) => state.user.status);
 
 	useEffect(() => {
-		if (loading === "idle" || loading === "loading") {
+		if (loading === "loading") {
 			setIsLoading(true);
 		} else {
 			setIsLoading(false);
@@ -49,7 +49,9 @@ export default function HomeTemplate({ children }) {
 		}
 	}, [user, pathname, router]);
 
-	if ((loading === "idle" || loading === "loading") && !user) {
+	console.log(loading);
+
+	if (loading === "loading" && !user) {
 		console.log("loading");
 		return <Loading isLoading={isLoading} />;
 	} else {
