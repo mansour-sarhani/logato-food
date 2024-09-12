@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ShopsManagementPage from "@/templates/panel/ShopsManagementPage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelShopManagement() {
-	return <ShopsManagementPage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<ShopsManagementPage />
+		</Suspense>
+	);
 }

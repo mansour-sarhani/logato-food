@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SubCategoryPage from "@/templates/panel/SubCategoryPage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelMenuCategory() {
-	return <SubCategoryPage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<SubCategoryPage />
+		</Suspense>
+	);
 }

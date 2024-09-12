@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import EditShopPage from "@/templates/panel/EditShopPage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelEditShop({ params }) {
-	return <EditShopPage shopId={params.shopId} />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<EditShopPage shopId={params.shopId} />
+		</Suspense>
+	);
 }

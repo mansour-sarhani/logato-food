@@ -227,7 +227,6 @@ export async function DELETE(req) {
 
 		const { searchParams } = new URL(req.url);
 		const id = searchParams.get("addressId");
-		console.log(id);
 		const addressIndex = user.addresses.findIndex(
 			(addr) => addr._id.toString() === id
 		);

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ShopCommentsPage from "@/templates/panel/ShopComments";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelShopComments() {
-	return <ShopCommentsPage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<ShopCommentsPage />
+		</Suspense>
+	);
 }

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CityPage from "@/templates/panel/CityPage";
 
 export const metadata = {
@@ -5,5 +6,9 @@ export const metadata = {
 };
 
 export default function PanelCity() {
-	return <CityPage />;
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<CityPage />
+		</Suspense>
+	);
 }

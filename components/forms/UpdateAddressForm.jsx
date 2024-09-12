@@ -134,8 +134,6 @@ export default function UpdateAddressForm(props) {
 								const selectedValue = JSON.parse(
 									e.target.value
 								);
-								console.log("values:", selectedValue);
-								console.log(selectedCity === selectedValue);
 								handleChange(e);
 								setFieldValue("cityId", selectedValue.cityId);
 								setFieldValue(
