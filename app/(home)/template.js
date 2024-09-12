@@ -46,14 +46,20 @@ export default function HomeTemplate({ children }) {
 		}
 	}, [user, pathname, router]);
 
-	if ((loading === "idle" || loading === "loading") && !user) {
-		return <Loading isLoading={isLoading} />;
-	} else {
-		return (
-			<div className="home-page">
-				<Header user={user} />
-				{children}
-			</div>
-		);
-	}
+	// if ((loading === "idle" || loading === "loading") && !user) {
+	// 	return <Loading isLoading={isLoading} />;
+	// } else {
+	// 	return (
+	// 		<div className="home-page">
+	// 			<Header user={user} />
+	// 			{children}
+	// 		</div>
+	// 	);
+	// }
+	return (
+		<div className="home-page">
+			<Header user={user} />
+			{children}
+		</div>
+	);
 }
