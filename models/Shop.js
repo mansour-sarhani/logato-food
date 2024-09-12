@@ -157,7 +157,7 @@ const shopSchema = new Schema(
 		logo: {
 			path: {
 				type: String,
-				default: "/images/storage/shops/",
+				default: "/assets/images/storage/shops/",
 			},
 			img: {
 				type: String,
@@ -167,7 +167,7 @@ const shopSchema = new Schema(
 		cover: {
 			path: {
 				type: String,
-				default: "/images/storage/shops/",
+				default: "/assets/images/storage/shops/",
 			},
 			img: {
 				type: String,

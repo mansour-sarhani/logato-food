@@ -64,7 +64,7 @@ const productSchema = new Schema(
 		image: {
 			path: {
 				type: String,
-				default: "/images/storage/products/",
+				default: "/assets/images/storage/products/",
 			},
 			img: {
 				type: String,
