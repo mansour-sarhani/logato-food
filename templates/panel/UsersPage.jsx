@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import adminGetAllUsers from "@/functions/admin/adminGetAllUsers";
 import useSetStatusLabel from "@/hooks/useSetStatusLabel";
+import Image from "next/image";
 import PanelModal from "@/components/panel/PanelModal";
 import NoData from "@/components/global/NoData";
 import LTProgress from "@/components/global/LTProgress";
@@ -98,10 +99,24 @@ export default function UsersPage() {
 									<TableRow key={user.id}>
 										<TableCell>{user.value}</TableCell>
 										<TableCell>
-											<LTImage
-												name={user.avatar}
-												variant="circle"
-											/>
+											{user.avatar.img === "" ? (
+												<Image
+													src="/assets/images/front/avatar.png"
+													alt="user-avatar"
+													width={70}
+													height={70}
+													style={{
+														borderRadius: "50%",
+													}}
+												/>
+											) : (
+												<LTImage
+													name={user.avatar}
+													variant="circle"
+													width={70}
+													height={70}
+												/>
+											)}
 										</TableCell>
 										<TableCell>{user.firstName}</TableCell>
 										<TableCell>{user.lastName}</TableCell>

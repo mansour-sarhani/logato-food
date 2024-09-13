@@ -18,6 +18,12 @@ const productSchema = new Schema(
 		finalPrice: {
 			type: Number,
 		},
+		discount: {
+			type: Number,
+		},
+		discountType: {
+			type: String,
+		},
 		categoryId: {
 			type: String,
 		},
@@ -32,19 +38,19 @@ const productSchema = new Schema(
 		description: {
 			type: String,
 		},
+		quantity: {
+			type: String,
+		},
 		weight: {
 			type: String,
 		},
 		weightUnit: {
 			type: String,
 		},
-		quantity: {
+		size: {
 			type: String,
 		},
-		discount: {
-			type: Number,
-		},
-		discountType: {
+		sizeUnit: {
 			type: String,
 		},
 		ratingsCount: {

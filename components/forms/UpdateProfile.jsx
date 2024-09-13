@@ -4,9 +4,10 @@ import { Formik, Form } from "formik";
 import userUpdateProfile from "@/functions/user/userUpdateProfile";
 import LTTextInput from "@/components/global/LTTextInput";
 import FileUploader from "@/components/global/FileUploader";
+import LTImage from "@/components/global/LTImage";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import Check from "@mui/icons-material/Check";
+import Image from "next/image";
 
 const initialValues = {
 	firstName: "",
@@ -77,16 +78,23 @@ export default function UpdateProfile(props) {
 					</div>
 
 					<div className="panel-new-img-container">
-						<Avatar
-							src={
-								currentData.avatar.path + currentData.avatar.img
-							}
-							style={{
-								width: "100px",
-								height: "100px",
-								marginTop: "40px",
-							}}
-						/>
+						{currentData.avatar.img === "" ? (
+							<Image
+								src="/assets/images/front/avatar.png"
+								alt="user-avatar"
+								width={100}
+								height={100}
+								style={{ borderRadius: "50%" }}
+							/>
+						) : (
+							<LTImage
+								name={currentData.avatar}
+								variant="circle"
+								width={100}
+								height={100}
+							/>
+						)}
+
 						<FileUploader
 							title="تصویر جدید"
 							name="newAvatar"

@@ -1,10 +1,11 @@
 "use client";
 
-import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import Loading from "@/components/global/Loading";
+import LTImage from "@/components/global/LTImage";
+import Typography from "@mui/material/Typography";
 
 export default function PanelSidebar({ user }) {
 	const path = usePathname();
@@ -26,11 +27,22 @@ export default function PanelSidebar({ user }) {
 		<div className="panel-sidebar-container">
 			<div className="panel-sidebar-top">
 				<div className="panel-sidebar-avatar">
-					<Avatar
-						alt={user.firstName}
-						src={user.avatar.path + user.avatar.img}
-						sx={{ width: 50, height: 50 }}
-					/>
+					{user.avatar.img === "" ? (
+						<Image
+							src="/assets/images/front/avatar.png"
+							alt="user-avatar"
+							width={50}
+							height={50}
+							style={{ borderRadius: "50%" }}
+						/>
+					) : (
+						<LTImage
+							name={user.avatar}
+							variant="circle"
+							width={50}
+							height={50}
+						/>
+					)}
 				</div>
 				<div className="panel-sidebar-top-text">
 					<Typography variant="h6">

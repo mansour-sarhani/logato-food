@@ -15,6 +15,7 @@ import LTTextArea from "@/components/global/LTTextArea";
 import LTTimePicker from "@/components/global/LTTimePicker";
 import LTPointOnMap from "@/components/global/LTPointOnMap";
 import LTProgress from "@/components/global/LTProgress";
+import LTImage from "@/components/global/LTImage";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -23,7 +24,6 @@ import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
-import Avatar from "@mui/material/Avatar";
 import Check from "@mui/icons-material/Check";
 
 const initialValues = {
@@ -373,9 +373,11 @@ export default function UpdateShopForm(props) {
 				<Form className="lt-form panel-form">
 					<div className="panel-grid-two">
 						<div className="panel-new-img-container">
-							<Avatar
-								src={values.logo.path + values.logo.img}
-								sx={{ width: 100, height: 100 }}
+							<LTImage
+								name={values.logo}
+								variant="rounded"
+								width={100}
+								height={100}
 							/>
 							<FileUploader
 								title="تصویر لوگو جدید"
@@ -385,9 +387,11 @@ export default function UpdateShopForm(props) {
 						</div>
 
 						<div className="panel-new-img-container">
-							<Avatar
-								src={values.cover.path + values.cover.img}
-								sx={{ width: 100, height: 100 }}
+							<LTImage
+								name={values.cover}
+								variant="rounded"
+								width={100}
+								height={100}
 							/>
 							<FileUploader
 								title="تصویر کاور جدید"

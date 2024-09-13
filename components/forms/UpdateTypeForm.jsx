@@ -4,9 +4,9 @@ import { Formik, Form } from "formik";
 import adminUpdateType from "@/functions/type/adminUpdateType";
 import LTTextInput from "@/components/global/LTTextInput";
 import FileUploader from "@/components/global/FileUploader";
+import LTImage from "@/components/global/LTImage";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Check from "@mui/icons-material/Check";
@@ -23,6 +23,8 @@ export default function UpdateTypeForm(props) {
 
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
+
+	console.log(currentData);
 
 	return (
 		<Formik
@@ -110,13 +112,11 @@ export default function UpdateTypeForm(props) {
 						}
 					/>
 					<div className="panel-new-img-container">
-						<Avatar
-							src={currentData.image.path + currentData.image.img}
-							style={{
-								width: "100px",
-								height: "100px",
-								marginTop: "40px",
-							}}
+						<LTImage
+							name={currentData.image}
+							variant="rounded"
+							width={100}
+							height={100}
 						/>
 						<FileUploader
 							title="تصویر جدید"

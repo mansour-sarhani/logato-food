@@ -118,7 +118,6 @@ const FileUploader = ({ title, name, number, stain }) => {
 				boxShadow: "none",
 				borderRadius: "10px",
 				width: "100%",
-				marginTop: "10px",
 			}}
 		>
 			<Typography

@@ -396,11 +396,12 @@ input::-webkit-inner-spin-button {
 
 /* AUTH PAGE */
 .auth-page-container {
-  width: 100%;
-  height: calc(100vh - 100px);
+  width: 75%;
+  height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 .auth-page-container .auth-page-box {
   width: 100%;
@@ -764,6 +765,10 @@ input::-webkit-inner-spin-button {
   font-weight: 600;
   margin-bottom: 5px;
 }
+.panel-inner-header .panel-inner-header-btns {
+  display: flex;
+  gap: 10px;
+}
 
 .panel-grid-one {
   display: grid;
@@ -825,54 +830,64 @@ input::-webkit-inner-spin-button {
   box-shadow: var(--box-shadow);
 }
 
-.panel-shop-view-box {
+.panel-shop-view {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
   height: 100%;
 }
-.panel-shop-view-box .panel-shop-view-header {
+.panel-shop-view .panel-shop-view-header {
   width: 100%;
-  margin-bottom: 10px;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-shop-view-title {
+.panel-shop-view .panel-shop-view-header .panel-shop-view-title {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-shop-view-title h6 {
+.panel-shop-view .panel-shop-view-header .panel-shop-view-title h6 {
   font-weight: 600;
   margin-bottom: 0;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-show-view-header-container {
+.panel-shop-view .panel-shop-view-header .panel-show-view-header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-shop-view-header-name {
+.panel-shop-view .panel-shop-view-header .panel-shop-view-header-name {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-shop-view-rating {
+.panel-shop-view .panel-shop-view-header .panel-shop-view-rating {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
 }
-.panel-shop-view-box .panel-shop-view-header .panel-shop-view-rating p {
+.panel-shop-view .panel-shop-view-header .panel-shop-view-rating p {
   font-family: "Vazir";
 }
-.panel-shop-view-box .panel-shop-view-cover {
+.panel-shop-view .panel-shop-view-cover {
   position: relative;
   width: 100%;
   height: 400px;
+  margin-bottom: 10px;
+}
+.panel-shop-view .panel-shop-view-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.panel-shop-view .panel-shop-view-wrapper .panel-shop-view-map {
+  width: 400px;
+  min-width: 400px;
 }
 
 .panel-inner-content .panel-view-full {
   width: 100%;
+  margin-bottom: 10px;
 }
 .panel-inner-content .panel-view-row {
   display: grid;
@@ -915,25 +930,38 @@ input::-webkit-inner-spin-button {
 .products-tab {
   display: flex;
   flex-grow: 1;
-  background-color: var(--background-color);
   height: 500px;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
-.products-tab-header {
+.products-tab .products-tab-navigation {
+  min-width: 140px;
+  border: 2px dashed var(--accent-color);
+  padding: 8px;
+  border-radius: var(--border-radius-small);
+}
+.products-tab .products-tab-navigation .Mui-selected {
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: var(--border-radius-small);
+}
+.products-tab .products-tab-content {
+  width: 100%;
+}
+.products-tab .products-tab-content .products-tab-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-.products-tab-header button {
+.products-tab .products-tab-content .products-tab-header button {
   font-size: 12px;
 }
-.products-tab-header button svg {
+.products-tab .products-tab-content .products-tab-header button svg {
   font-size: 16px;
 }
-.products-tab-header .products-tab-header-btns {
+.products-tab .products-tab-content .products-tab-header .products-tab-header-btns {
   display: flex;
   gap: 1rem;
 }
@@ -1002,10 +1030,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
   position: relative;
 }
-.shop-cover .MuiAvatar-root {
-  max-width: 100%;
-}
-.shop-cover .MuiAvatar-root img {
+.shop-cover img {
   max-width: 100%;
 }
 .shop-cover .shop-identity {

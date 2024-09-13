@@ -15,6 +15,7 @@ import LTMap from "@/components/global/LTMap";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import Paper from "@mui/material/Paper";
+import Alert from "@mui/material/Alert";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
@@ -74,6 +75,8 @@ export default function ShopSinglePage({ id }) {
 			setDoReload(false);
 		}
 	}, [shop, doReload]);
+
+	console.log(user);
 
 	return !shop ? (
 		<LTProgress />
@@ -166,7 +169,7 @@ export default function ShopSinglePage({ id }) {
 								<LTImage
 									name={shop.cover}
 									alt={shop.name}
-									width={970}
+									width={870}
 									height={300}
 								/>
 								<div className="shop-identity">
@@ -348,23 +351,33 @@ export default function ShopSinglePage({ id }) {
 									نظرات کاربران
 								</Typography>
 							</div>
-							<div className="shop-new-comment">
-								<PanelModal
-									buttonLabel="ثبت نظر"
-									modalHeader="ثبت نظر"
-									icon="comment"
+							{Object.keys(user).length === 0 ? (
+								<Alert
+									severity="info"
+									sx={{ marginBottom: "10px" }}
 								>
-									<AddCommentForm
-										commentOn="shop"
-										shopId={shop.id}
-										shopName={shop.name}
-										userId={user.id}
-										userName={user.firstName}
-										isOriginalComment={true}
-										setDoReload={setDoReload}
-									/>
-								</PanelModal>
-							</div>
+									برای ثبت نظر باید ابتدا وارد حساب کاربری خود
+									شوید.
+								</Alert>
+							) : (
+								<div className="shop-new-comment">
+									<PanelModal
+										buttonLabel="ثبت نظر"
+										modalHeader="ثبت نظر"
+										icon="comment"
+									>
+										<AddCommentForm
+											commentOn="shop"
+											shopId={shop.id}
+											shopName={shop.name}
+											userId={user.id}
+											userName={user.firstName}
+											isOriginalComment={true}
+											setDoReload={setDoReload}
+										/>
+									</PanelModal>
+								</div>
+							)}
 							<div className="shop-comments-wrapper">
 								{comments && comments.length > 0 ? (
 									comments
@@ -421,9 +434,12 @@ export default function ShopSinglePage({ id }) {
 											</div>
 										))
 								) : (
-									<Typography variant="body2">
+									<Alert
+										severity="info"
+										sx={{ marginBottom: "10px" }}
+									>
 										نظری برای این فروشگاه ثبت نشده است.
-									</Typography>
+									</Alert>
 								)}
 							</div>
 						</div>

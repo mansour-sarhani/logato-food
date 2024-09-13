@@ -6,11 +6,11 @@ import adminUpdateCategory from "@/functions/category/adminUpdateCategory";
 import getAllTypes from "@/functions/type/getAllTypes";
 import LTTextInput from "@/components/global/LTTextInput";
 import FileUploader from "@/components/global/FileUploader";
+import LTImage from "@/components/global/LTImage";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -147,7 +147,7 @@ export default function UpdateCategoryForm(props) {
 						label={
 							values.status === "active" ? (
 								<Typography>
-									دسته بتدی{" "}
+									دسته بندی{" "}
 									<strong style={{ color: "#FF4500" }}>
 										فعال
 									</strong>{" "}
@@ -166,13 +166,11 @@ export default function UpdateCategoryForm(props) {
 					/>
 
 					<Box className="panel-new-img-container">
-						<Avatar
-							src={currentData.image.path + currentData.image.img}
-							style={{
-								width: "100px",
-								height: "100px",
-								marginTop: "40px",
-							}}
+						<LTImage
+							name={currentData.image}
+							variant="rounded"
+							width={100}
+							height={100}
 						/>
 						<FileUploader
 							title="تصویر جدید"

@@ -137,6 +137,67 @@ export default function ShopsManagementPage() {
 					</Link>
 				</Button>
 			</div>
+			<div className="panel-filters">
+				<FormControl variant="standard">
+					<Input
+						id="panel-search"
+						placeholder="جستجو فروشگاه"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
+						startAdornment={
+							<InputAdornment position="start">
+								<SearchOutlined />
+							</InputAdornment>
+						}
+						sx={{ width: "300px" }}
+					/>
+				</FormControl>
+
+				<ToggleButtonGroup
+					color="primary"
+					value={status}
+					exclusive
+					onChange={handleStatus}
+					aria-label="status"
+					size="small"
+				>
+					<ToggleButton
+						variant="outlined"
+						value="all"
+						aria-label="all"
+					>
+						همه
+					</ToggleButton>
+					<ToggleButton
+						variant="outlined"
+						value="active"
+						aria-label="active"
+					>
+						فعال
+					</ToggleButton>
+					<ToggleButton
+						variant="outlined"
+						value="inactive"
+						aria-label="inactive"
+					>
+						غیرفعال
+					</ToggleButton>
+					<ToggleButton
+						variant="outlined"
+						value="underReview"
+						aria-label="underReview"
+					>
+						در انتظار تایید
+					</ToggleButton>
+					<ToggleButton
+						variant="outlined"
+						value="banned"
+						aria-label="banned"
+					>
+						مسدود شده
+					</ToggleButton>
+				</ToggleButtonGroup>
+			</div>
 
 			{!shops ? (
 				<LTProgress />
@@ -144,68 +205,6 @@ export default function ShopsManagementPage() {
 				<NoData />
 			) : (
 				<div className="panel-inner-content">
-					<div className="panel-filters">
-						<FormControl variant="standard">
-							<Input
-								id="panel-search"
-								placeholder="جستجو فروشگاه"
-								value={searchTerm}
-								onChange={(e) => setSearchTerm(e.target.value)}
-								startAdornment={
-									<InputAdornment position="start">
-										<SearchOutlined />
-									</InputAdornment>
-								}
-								sx={{ width: "300px" }}
-							/>
-						</FormControl>
-
-						<ToggleButtonGroup
-							color="primary"
-							value={status}
-							exclusive
-							onChange={handleStatus}
-							aria-label="status"
-							size="small"
-						>
-							<ToggleButton
-								variant="outlined"
-								value="all"
-								aria-label="all"
-							>
-								همه
-							</ToggleButton>
-							<ToggleButton
-								variant="outlined"
-								value="active"
-								aria-label="active"
-							>
-								فعال
-							</ToggleButton>
-							<ToggleButton
-								variant="outlined"
-								value="inactive"
-								aria-label="inactive"
-							>
-								غیرفعال
-							</ToggleButton>
-							<ToggleButton
-								variant="outlined"
-								value="underReview"
-								aria-label="underReview"
-							>
-								در انتظار تایید
-							</ToggleButton>
-							<ToggleButton
-								variant="outlined"
-								value="banned"
-								aria-label="banned"
-							>
-								مسدود شده
-							</ToggleButton>
-						</ToggleButtonGroup>
-					</div>
-
 					<TableContainer component={Paper}>
 						<Table aria-label="shops table">
 							<TableHead sx={{ backgroundColor: "#ccc" }}>
@@ -233,7 +232,9 @@ export default function ShopsManagementPage() {
 										<TableCell>
 											<LTImage
 												name={shop.logo}
-												variant="circle"
+												variant="rounded"
+												width={70}
+												height={70}
 											/>
 										</TableCell>
 										<TableCell>{shop.name}</TableCell>

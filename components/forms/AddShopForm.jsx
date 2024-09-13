@@ -151,6 +151,19 @@ export default function AddShopForm(props) {
 		setFieldValue("subCategories", newSubCategories);
 	};
 
+	const validate = (values) => {
+		const errors = {};
+		try {
+			validationSchema.validateSync(values, { abortEarly: false });
+		} catch (validationErrors) {
+			validationErrors.inner.forEach((error) => {
+				errors[error.path] = error.message;
+				enqueueSnackbar(error.message, { variant: "error" });
+			});
+		}
+		return errors;
+	};
+
 	useEffect(() => {
 		async function fetchTypes() {
 			await getAllTypes(dispatch, enqueueSnackbar, setTypes);
@@ -168,7 +181,9 @@ export default function AddShopForm(props) {
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validate={validate}
+			validateOnChange={false}
+			validateOnBlur={false}
 			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				const data = {
 					name: values.name,

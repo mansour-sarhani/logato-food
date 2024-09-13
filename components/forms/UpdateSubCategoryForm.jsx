@@ -6,15 +6,15 @@ import getAllCategories from "@/functions/category/getAllCategories";
 import adminUpdateSubCategory from "@/functions/subCategory/adminUpdateSubCategory";
 import LTTextInput from "@/components/global/LTTextInput";
 import FileUploader from "@/components/global/FileUploader";
+import LTProgress from "@/components/global/LTProgress";
+import LTImage from "@/components/global/LTImage";
 import Button from "@mui/material/Button";
 import Switch from "@mui/material/Switch";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import Check from "@mui/icons-material/Check";
-import LTProgress from "../global/LTProgress";
 
 const initialValues = {
 	alias: "",
@@ -185,13 +185,11 @@ export default function UpdateSubCategoryForm(props) {
 						}
 					/>
 					<div className="panel-new-img-container">
-						<Avatar
-							src={currentData.image.path + currentData.image.img}
-							style={{
-								width: "100px",
-								height: "100px",
-								marginTop: "40px",
-							}}
+						<LTImage
+							name={currentData.image}
+							variant="rounded"
+							width={100}
+							height={100}
 						/>
 						<FileUploader
 							title="تصویر"

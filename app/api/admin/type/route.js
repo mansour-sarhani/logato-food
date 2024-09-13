@@ -256,7 +256,6 @@ export async function PUT(req) {
 			}
 
 			type.image.img = uniqueName;
-			type.image.path = "/assets/images/storage/types/";
 			type.markModified("image");
 		}
 

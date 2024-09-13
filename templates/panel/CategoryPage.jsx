@@ -114,6 +114,8 @@ export default function CategoryPage() {
 											<LTImage
 												name={category.image}
 												variant="rounded"
+												width={70}
+												height={70}
 											/>
 										</TableCell>
 										<TableCell>{category.alias}</TableCell>

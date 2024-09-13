@@ -14,27 +14,21 @@ export async function POST(req) {
 	try {
 		const formData = await req.formData();
 
-		const ingredients = [];
-		for (const [key, value] of formData.entries()) {
-			if (key.startsWith("ingredients[")) {
-				ingredients.push(value);
-			}
-		}
-
 		const productData = {
 			name: formData.get("name"),
 			price: formData.get("price"),
 			finalPrice: null,
+			discount: formData.get("discount"),
+			discountType: formData.get("discountType"),
 			categoryId: formData.get("categoryId"),
 			categoryName: formData.get("categoryName"),
 			shopId: formData.get("shopId"),
 			description: formData.get("description"),
+			quantity: formData.get("quantity"),
 			weight: formData.get("weight"),
 			weightUnit: formData.get("weightUnit"),
-			quantity: formData.get("quantity"),
-			ingredients: ingredients,
-			discount: formData.get("discount"),
-			discountType: formData.get("discountType"),
+			size: formData.get("size"),
+			sizeUnit: formData.get("sizeUnit"),
 		};
 
 		if (productData.discount !== "") {
@@ -134,17 +128,20 @@ export async function GET(request) {
 		return {
 			id: product._id,
 			value: product.value,
+			shopId: product.shopId,
 			name: product.name,
 			price: product.price,
-			categoryId: product.categoryId,
-			categoryName: product.categoryName,
-			shopId: product.shopId,
-			description: product.description,
-			weight: product.weight,
-			weightUnit: product.weightUnit,
-			quantity: product.quantity,
+			finalPrice: product.finalPrice,
 			discount: product.discount,
 			discountType: product.discountType,
+			categoryId: product.categoryId,
+			categoryName: product.categoryName,
+			description: product.description,
+			quantity: product.quantity,
+			weight: product.weight,
+			weightUnit: product.weightUnit,
+			size: product.size,
+			sizeUnit: product.sizeUnit,
 			ratingsCount: product.ratingsCount,
 			totalRating: product.totalRating,
 			averageRating: product.averageRating,
@@ -222,12 +219,14 @@ export async function PUT(req) {
 
 		const name = formData.get("name");
 		const price = formData.get("price");
-		const description = formData.get("description");
-		const weight = formData.get("weight");
-		const weightUnit = formData.get("weightUnit");
-		const quantity = formData.get("quantity");
 		const discount = formData.get("discount");
 		const discountType = formData.get("discountType");
+		const description = formData.get("description");
+		const quantity = formData.get("quantity");
+		const weight = formData.get("weight");
+		const weightUnit = formData.get("weightUnit");
+		const size = formData.get("size");
+		const sizeUnit = formData.get("sizeUnit");
 
 		const product = await Product.findById(productId);
 
@@ -290,11 +289,6 @@ export async function PUT(req) {
 
 		if (name) product.name = name || product.name;
 		if (price) product.price = price || product.price;
-		if (description)
-			product.description = description || product.description;
-		if (weight) product.weight = weight || product.weight;
-		if (weightUnit) product.weightUnit = weightUnit || product.weightUnit;
-		if (quantity) product.quantity = quantity || product.quantity;
 		if (discount) {
 			product.discount = discount || product.discount;
 			if (product.discountType === "percent") {
@@ -313,6 +307,13 @@ export async function PUT(req) {
 				product.finalPrice = product.price - product.discount;
 			}
 		}
+		if (description)
+			product.description = description || product.description;
+		if (quantity) product.quantity = quantity || product.quantity;
+		if (weight) product.weight = weight || product.weight;
+		if (weightUnit) product.weightUnit = weightUnit || product.weightUnit;
+		if (size) product.size = size || product.size;
+		if (sizeUnit) product.sizeUnit = sizeUnit || product.sizeUnit;
 
 		const shop = await Shop.findById(product.shopId);
 
@@ -331,12 +332,14 @@ export async function PUT(req) {
 		[
 			"name",
 			"price",
-			"description",
-			"weight",
-			"weightUnit",
-			"quantity",
 			"discount",
 			"discountType",
+			"description",
+			"quantity",
+			"weight",
+			"weightUnit",
+			"size",
+			"sizeUnit",
 		].forEach((field) => product.markModified(field));
 
 		await product.save();
