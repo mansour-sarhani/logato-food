@@ -1,9 +1,9 @@
 import { ADMIN_DELETE_TYPE } from "@/redux/features/typeSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-async function adminDeleteType(dispatch, enqueueSnackbar, data) {
+async function adminDeleteType(dispatch, enqueueSnackbar, typeId) {
 	try {
-		const result = await dispatch(ADMIN_DELETE_TYPE(data));
+		const result = await dispatch(ADMIN_DELETE_TYPE(typeId));
 		const response = unwrapResult(result);
 
 		enqueueSnackbar("نوع فروشگاه با موفقیت حذف شد.", {

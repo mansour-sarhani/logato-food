@@ -1,5 +1,12 @@
-import ShopSinglePage from "@/templates/front/ShopSinglePage";
 import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const ShopSinglePage = dynamic(
+	() => import("@/templates/front/ShopSinglePage"),
+	{
+		ssr: false,
+	}
+);
 
 export const metadata = {
 	title: "لوگاتو | مشاهده فروشگاه",

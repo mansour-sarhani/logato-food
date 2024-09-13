@@ -1,13 +1,14 @@
 "use client";
 
-import Container from "@mui/material/Container";
+import Header from "@/layouts/header/Header";
 import Image from "next/image";
 import RegisterForm from "@/components/forms/RegisterForm";
 
 export default function RegisterPage() {
 	return (
-		<div className="page-wrapper">
-			<Container>
+		<div className="inner-page auth-page">
+			<Header />
+			<div className="lt-container">
 				<div className="auth-page-container">
 					<div className="auth-page-box">
 						<RegisterForm />
@@ -21,7 +22,7 @@ export default function RegisterPage() {
 						/>
 					</div>
 				</div>
-			</Container>
+			</div>
 		</div>
 	);
 }

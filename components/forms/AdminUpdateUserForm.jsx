@@ -4,8 +4,8 @@ import adminUpdateUser from "@/functions/admin/adminUpdateUser";
 import { Formik, Form } from "formik";
 import LTTextInput from "@/components/global/LTTextInput";
 import FileUploader from "@/components/global/FileUploader";
+import LTImage from "@/components/global/LTImage";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import Check from "@mui/icons-material/Check";
@@ -141,15 +141,11 @@ export default function AdminUpdateUserForm(props) {
 					</div>
 
 					<div className="panel-new-img-container">
-						<Avatar
-							src={
-								currentData.avatar.path + currentData.avatar.img
-							}
-							style={{
-								width: "100px",
-								height: "100px",
-								marginTop: "40px",
-							}}
+						<LTImage
+							name={currentData.avatar}
+							variant="rounded"
+							width={100}
+							height={100}
 						/>
 						<FileUploader
 							title="تصویر جدید"

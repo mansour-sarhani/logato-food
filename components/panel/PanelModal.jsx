@@ -56,6 +56,7 @@ function PanelModal(props) {
 		variant,
 		icon,
 		tooltipTitle,
+		fullScreen = false,
 	} = props;
 
 	const handleClickOpen = () => {
@@ -81,8 +82,16 @@ function PanelModal(props) {
 				onClose={handleClose}
 				aria-labelledby="panel-modal-title"
 				open={open}
+				fullScreen={fullScreen}
 			>
-				<div className="bg-black" style={{ width: "600px" }}>
+				<div
+					className="bg-black"
+					style={{
+						width: fullScreen ? "100%" : "600px",
+						maxWidth: fullScreen ? "800px" : "600px",
+						margin: fullScreen ? "0 auto" : "0",
+					}}
+				>
 					<BootstrapDialogTitle
 						id="panel-modal-title"
 						onClose={handleClose}

@@ -220,6 +220,22 @@ a {
 	justify-content: center;
 }
 
+.MuiSwitch-switchBase {
+	right: 0;
+	left: auto !important;
+}
+
+.MuiSwitch-switchBase.Mui-checked {
+	right: auto;
+	left: 0 !important;
+	transform: translateX(0px) !important;
+}
+
+.MuiDialog-paperFullScreen {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
 @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;

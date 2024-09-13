@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import addProduct from "@/functions/product/addProduct";
 import LTTextInput from "@/components/global/LTTextInput";
@@ -9,6 +9,7 @@ import LTPriceInput from "@/components/global/LTPriceInput";
 import LTTextArea from "@/components/global/LTTextArea";
 import LTNumberInput from "@/components/global/LTNumberInput";
 import NativeSelect from "@mui/material/NativeSelect";
+import FormHelperText from "@mui/material/FormHelperText";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import AddIcon from "@mui/icons-material/Add";
@@ -16,20 +17,37 @@ import AddIcon from "@mui/icons-material/Add";
 const initialValues = {
 	name: "",
 	price: "",
+	discount: "",
+	discountType: "",
 	categoryId: "",
 	categoryName: "",
 	description: "",
+	quantity: "",
 	weight: "",
 	weightUnit: "",
-	quantity: "",
-	discount: "",
-	discountType: "",
+	size: "",
+	sizeUnit: "",
 	image: null,
 };
 
 const validationSchema = Yup.object({
 	name: Yup.string().required("وارد کردن نام ضروری است"),
 	price: Yup.string().required("وارد کردن قیمت ضروری است"),
+	weightUnit: Yup.string().when("weight", ([weight], schema) => {
+		return weight.length > 0
+			? schema.required("وارد کردن واحد وزن ضروری است")
+			: schema.nullable();
+	}),
+	sizeUnit: Yup.string().when("size", ([size], schema) => {
+		return size.length > 0
+			? schema.required("وارد کردن واحد اندازه گیری ضروری است")
+			: schema.nullable();
+	}),
+	discountType: Yup.string().when("discount", ([discount], schema) => {
+		return discount.length > 0
+			? schema.required("وارد کردن نوع تخفیف ضروری است")
+			: schema.nullable();
+	}),
 });
 
 export default function AddProductForm(props) {
@@ -59,17 +77,19 @@ export default function AddProductForm(props) {
 			validateOnBlur={false}
 			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				const data = {
-					name: values.name,
-					price: values.price,
 					categoryId: category._id,
 					categoryName: category.name,
 					shopId: shopId,
-					description: values.description,
-					weight: values.weight,
-					weightUnit: values.weightUnit,
-					quantity: values.quantity,
+					name: values.name,
+					price: values.price,
 					discount: values.discount,
 					discountType: values.discountType,
+					description: values.description,
+					quantity: values.quantity,
+					weight: values.weight,
+					weightUnit: values.weightUnit,
+					size: values.size,
+					sizeUnit: values.sizeUnit,
 					image: values.image ? values.image[0] : null,
 				};
 				await addProduct(dispatch, enqueueSnackbar, data);
@@ -79,7 +99,7 @@ export default function AddProductForm(props) {
 				handleClose(true);
 			}}
 		>
-			{({ setFieldValue, isSubmitting }) => (
+			{({ setFieldValue, isSubmitting, values }) => (
 				<Form className="lt-form panel-form">
 					<div className="panel-grid-one">
 						<LTTextInput name="name" label="نام*" />
@@ -95,48 +115,18 @@ export default function AddProductForm(props) {
 
 					<div className="panel-grid-two">
 						<LTNumberInput
-							name="weight"
-							label="وزن (در صورت نیاز)"
-						/>
-						<FormControl className="lt-form-control">
-							<label className="lt-label" htmlFor="weight-select">
-								واحد وزنی
-							</label>
-							<NativeSelect
-								defaultValue={""}
-								inputProps={{
-									name: "weightUnit",
-									id: "weight-select",
-								}}
-								onChange={(e) =>
-									setFieldValue("weightUnit", e.target.value)
-								}
-								className="lt-select"
-							>
-								<option value="">انتخاب کنید</option>
-								<option value="gram">گرم</option>
-								<option value="kilogram">کیلوگرم</option>
-							</NativeSelect>
-						</FormControl>
-					</div>
-
-					<div className="panel-grid-two">
-						<LTNumberInput
 							name="discount"
 							label="تخفیف (در صورت نیاز)"
 						/>
 						<FormControl className="lt-form-control">
-							<label
-								className="lt-label"
-								htmlFor="discountType-select"
-							>
+							<label className="lt-label" htmlFor="discountType">
 								نوع تخفیف
 							</label>
 							<NativeSelect
 								defaultValue={""}
 								inputProps={{
 									name: "discountType",
-									id: "discountType-select",
+									id: "discountType",
 								}}
 								onChange={(e) =>
 									setFieldValue(
@@ -145,11 +135,80 @@ export default function AddProductForm(props) {
 									)
 								}
 								className="lt-select"
+								disabled={!values.discount}
 							>
 								<option value="">انتخاب کنید</option>
 								<option value={"amount"}>مبلغ</option>
 								<option value={"percent"}>درصد</option>
 							</NativeSelect>
+
+							<FormHelperText className="lt-form-error">
+								<ErrorMessage name={"discountType"} />
+							</FormHelperText>
+						</FormControl>
+					</div>
+
+					<div className="panel-grid-two">
+						<LTNumberInput
+							name="size"
+							label="اندازه (در صورت نیاز)"
+						/>
+						<FormControl className="lt-form-control">
+							<label className="lt-label" htmlFor="sizeUnit">
+								واحد اندازه
+							</label>
+							<NativeSelect
+								defaultValue={""}
+								inputProps={{
+									name: "sizeUnit",
+									id: "sizeUnit",
+								}}
+								onChange={(e) =>
+									setFieldValue("sizeUnit", e.target.value)
+								}
+								className="lt-select"
+								disabled={!values.size}
+							>
+								<option value="">انتخاب کنید</option>
+								<option value="centimeter">سانتیمتر</option>
+								<option value="meter">متر</option>
+							</NativeSelect>
+
+							<FormHelperText className="lt-form-error">
+								<ErrorMessage name={"sizeUnit"} />
+							</FormHelperText>
+						</FormControl>
+					</div>
+
+					<div className="panel-grid-two">
+						<LTNumberInput
+							name="weight"
+							label="وزن (در صورت نیاز)"
+						/>
+						<FormControl className="lt-form-control">
+							<label className="lt-label" htmlFor="weightUnit">
+								واحد وزنی
+							</label>
+							<NativeSelect
+								defaultValue={""}
+								inputProps={{
+									name: "weightUnit",
+									id: "weightUnit",
+								}}
+								onChange={(e) =>
+									setFieldValue("weightUnit", e.target.value)
+								}
+								className="lt-select"
+								disabled={!values.weight}
+							>
+								<option value="">انتخاب کنید</option>
+								<option value="gram">گرم</option>
+								<option value="kilogram">کیلوگرم</option>
+							</NativeSelect>
+
+							<FormHelperText className="lt-form-error">
+								<ErrorMessage name={"weightUnit"} />
+							</FormHelperText>
 						</FormControl>
 					</div>
 

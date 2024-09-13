@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@mui/material/Container";
+import Header from "@/layouts/header/Header";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -24,8 +24,9 @@ export default function LoginPage() {
 	}, [searchParams]);
 
 	return (
-		<div className="page-wrapper">
-			<Container>
+		<div className="inner-page auth-page">
+			<Header />
+			<div className="lt-container">
 				<div className="auth-page-container">
 					<div className="auth-page-box">
 						<LoginForm />
@@ -39,7 +40,7 @@ export default function LoginPage() {
 						/>
 					</div>
 				</div>
-			</Container>
+			</div>
 		</div>
 	);
 }

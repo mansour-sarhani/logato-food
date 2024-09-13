@@ -118,6 +118,8 @@ export default function SubCategoryPage() {
 											<LTImage
 												name={subCategory.image}
 												variant="rounded"
+												width={70}
+												height={70}
 											/>
 										</TableCell>
 										<TableCell>

@@ -140,7 +140,7 @@ export default function TypePage() {
 													handleRemoveItem={
 														handleRemoveItem
 													}
-													id={type.id}
+													data={type.id}
 												/>
 											</div>
 										</TableCell>
