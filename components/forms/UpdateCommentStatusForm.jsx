@@ -15,11 +15,11 @@ export default function UpdateCommentStatusForm(props) {
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 
-	const { handleClose, setDoReload, commentId } = props;
+	const { handleClose, setDoReload, commentId, currentData } = props;
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={currentData || initialValues}
 			onSubmit={async (values, { setSubmitting, resetForm }) => {
 				const data = {
 					status: values.status,

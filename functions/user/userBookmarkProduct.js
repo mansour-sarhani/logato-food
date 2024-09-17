@@ -1,9 +1,9 @@
-import { USER_BOOKMARK_MENU_ITEM } from "@/redux/features/userSlice";
+import { USER_BOOKMARK_PRODUCT } from "@/redux/features/userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-async function userBookmarkProduct(dispatch, enqueueSnackbar, bookmarkProduct) {
+async function userBookmarkProduct(dispatch, enqueueSnackbar, productId) {
 	try {
-		const result = await dispatch(USER_BOOKMARK_MENU_ITEM(bookmarkProduct));
+		const result = await dispatch(USER_BOOKMARK_PRODUCT(productId));
 		const response = unwrapResult(result);
 
 		enqueueSnackbar("با موفقیت به لیست شما اضافه شد", {

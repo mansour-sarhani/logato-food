@@ -50,10 +50,10 @@ export const USER_UPDATE_PROFILE = createAsyncThunk(
 
 export const USER_BOOKMARK_SHOP = createAsyncThunk(
 	"user/USER_BOOKMARK_SHOP",
-	async (bookmarkShop, { rejectWithValue }) => {
+	async (shopId, { rejectWithValue }) => {
 		try {
 			const response = await http.post(
-				"/api/user?bookmarkShop=" + bookmarkShop + "&action=bookmark"
+				"/api/user?bookmarkShop=" + shopId + "&action=bookmark"
 			);
 			return response.data;
 		} catch (err) {
@@ -67,10 +67,10 @@ export const USER_BOOKMARK_SHOP = createAsyncThunk(
 
 export const USER_UN_BOOKMARK_SHOP = createAsyncThunk(
 	"user/USER_UN_BOOKMARK_SHOP",
-	async (bookmarkShop, { rejectWithValue }) => {
+	async (shopId, { rejectWithValue }) => {
 		try {
 			const response = await http.post(
-				"/api/user?bookmarkShop=" + bookmarkShop + "&action=unbookmark"
+				"/api/user?bookmarkShop=" + shopId + "&action=unbookmark"
 			);
 			return response.data;
 		} catch (err) {
@@ -84,12 +84,10 @@ export const USER_UN_BOOKMARK_SHOP = createAsyncThunk(
 
 export const USER_BOOKMARK_PRODUCT = createAsyncThunk(
 	"user/USER_BOOKMARK_PRODUCT",
-	async (bookmarkProduct, { rejectWithValue }) => {
+	async (productId, { rejectWithValue }) => {
 		try {
 			const response = await http.post(
-				"/api/user?bookmarkProduct=" +
-					bookmarkProduct +
-					"&action=bookmark"
+				"/api/user?bookmarkProduct=" + productId + "&action=bookmark"
 			);
 			return response.data;
 		} catch (err) {
@@ -103,13 +101,41 @@ export const USER_BOOKMARK_PRODUCT = createAsyncThunk(
 
 export const USER_UN_BOOKMARK_PRODUCT = createAsyncThunk(
 	"user/USER_UN_BOOKMARK_PRODUCT",
-	async (bookmarkProduct, { rejectWithValue }) => {
+	async (productId, { rejectWithValue }) => {
 		try {
 			const response = await http.post(
-				"/api/user?bookmarkProduct=" +
-					bookmarkProduct +
-					"&action=unbookmark"
+				"/api/user?bookmarkProduct=" + productId + "&action=unbookmark"
 			);
+			return response.data;
+		} catch (err) {
+			if (!err.response) {
+				throw err;
+			}
+			return rejectWithValue(err.response.data);
+		}
+	}
+);
+
+export const GET_USER_BOOKMARKED_SHOPS = createAsyncThunk(
+	"user/GET_USER_BOOKMARKED_SHOPS",
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await http.get("/api/user/bookmark?type=shops");
+			return response.data;
+		} catch (err) {
+			if (!err.response) {
+				throw err;
+			}
+			return rejectWithValue(err.response.data);
+		}
+	}
+);
+
+export const GET_USER_BOOKMARKED_PRODUCTS = createAsyncThunk(
+	"user/GET_USER_BOOKMARKED_PRODUCTS",
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await http.get("/api/user/bookmark?type=products");
 			return response.data;
 		} catch (err) {
 			if (!err.response) {
@@ -142,6 +168,7 @@ export const USER_SEARCH_ALL_QUERY = createAsyncThunk(
 			const response = await http.get(`/api/search?${query}`);
 			return response.data;
 		} catch (err) {
+			console.log("error");
 			if (!err.response) {
 				throw err;
 			}
@@ -246,10 +273,10 @@ export const userSlice = createSlice({
 		handleAsyncActions(builder, USER_UN_BOOKMARK_PRODUCT);
 
 		//USER_SEARCH_FOR_TERM
-		handleAsyncActions(builder, USER_SEARCH_FOR_TERM);
+		// handleAsyncActions(builder, USER_SEARCH_FOR_TERM);
 
 		//USER_SEARCH_ALL_QUERY
-		handleAsyncActions(builder, USER_SEARCH_ALL_QUERY);
+		// handleAsyncActions(builder, USER_SEARCH_ALL_QUERY);
 
 		//USER_ADD_ADDRESS
 		handleAsyncActions(builder, USER_ADD_ADDRESS);

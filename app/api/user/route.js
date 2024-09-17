@@ -114,6 +114,7 @@ async function handleBookmark(bookmarkType, bookmarkId, action) {
 
 		return NextResponse.json({
 			success: true,
+			data: user,
 			message:
 				action === "bookmark"
 					? "با موفقیت ذخیره شد."

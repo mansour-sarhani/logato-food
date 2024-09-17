@@ -5,8 +5,7 @@ async function userSearchForTerm(dispatch, enqueueSnackbar, term, setState) {
 	try {
 		const result = await dispatch(USER_SEARCH_FOR_TERM(term));
 		const response = unwrapResult(result);
-
-		setState(response.data);
+		setState(response);
 	} catch (err) {
 		const errorMessage = err.message;
 

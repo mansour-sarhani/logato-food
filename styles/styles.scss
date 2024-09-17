@@ -50,7 +50,7 @@
 
 /* GLOBAL */
 body {
-    font-family: "IranYekan", sans-serif;
+    font-family: "Vazir", sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     direction: rtl;
@@ -111,7 +111,7 @@ button a {
 .lt-label {
 	margin-bottom: 0.5rem;
 	width: 100%;
-    font-family: 'IranYekanBold';
+    font-family: 'VazirBold';
     font-weight: 500;
 }
 
@@ -129,7 +129,7 @@ input:focus-visible {
     color: var(--input-text-color);
     border-radius: var(--border-radius-medium);
     border: 1px solid var(--border-color);
-    font-family: 'IranYekan';
+    font-family: 'Vazir';
 }
 
 .lt-input:disabled {
@@ -148,7 +148,7 @@ input:focus-visible {
     color: var(--input-text-color);
     border-radius: var(--border-radius-medium);
     border: 1px solid var(--border-color);
-    font-family: "IranYekan";
+    font-family: "Vazir";
 }
 
 .lt-password-field {
@@ -424,7 +424,7 @@ input::-webkit-inner-spin-button {
 
 /* AUTH PAGE */
 .auth-page-container {
-    width: 75%;
+    width: 80%;
     height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
@@ -432,7 +432,7 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
 
     .auth-page-box {
-        width: 100%;
+        width: 40%;
         padding: 20px;
         background-color: var(--background-color);
         border-radius: var(--border-radius-medium);
@@ -449,6 +449,16 @@ input::-webkit-inner-spin-button {
                 font-size: 13px;
                 color: var(--primary-color);
             }
+        }
+    }
+
+    .auth-page-image {
+        width: 60%;
+        min-width: 50%;
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
     }
 }
@@ -527,7 +537,7 @@ input::-webkit-inner-spin-button {
 .shop-types-container {
     display: flex;
     justify-content: center;
-    margin: 80px 0 40px;
+    margin: 40px 0 40px;
     position: relative;
     z-index: 2;
 }
@@ -604,52 +614,56 @@ input::-webkit-inner-spin-button {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 30px;
+}
 
-    .search-result-item {
+/* SHOP ITEM */
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .shop-item-image {
+        position: relative;
+        height: 120px;
+        width: 100%;
+
+        .shop-item-cover-image {
+            img {
+                width: 100%;
+                max-width: 100%;
+                border-bottom-left-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+            }
+        }
+
+        .shop-item-logo-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -40px;
+            right: 50%;
+            transform: translate(50%, 0);
+        }
+    }
+
+    .shop-item-details {
+        width: 100%;
+        height: 100%;
+        padding: 50px 15px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-medium);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
-        .search-result-item-image {
-            position: relative;
-            height: 120px;
-
-            .search-result-cover-image {
-                .MuiAvatar-rounded {
-                    border-bottom-left-radius: 0;
-                    border-bottom-right-radius: 0;
-                }
-            }
-
-            .search-result-logo-image {
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                position: absolute;
-                bottom: -40px;
-                right: 50%;
-                transform: translate(50%, 0);
-            }
-        }
-
-        .search-result-item-details {
-            width: 100%;
-            height: 100%;
-            padding: 50px 15px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-medium);
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
+        .shop-item-categories {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            .search-result-item-categories {
-                display: flex;
-                gap: 5px;
-            }
+            gap: 5px;
         }
     }
 }
@@ -824,7 +838,7 @@ input::-webkit-inner-spin-button {
     
                 a {
                     color: var(--primary-color) !important;
-                    font-family: "IranYekanBold";
+                    font-family: "VazirBold";
                 }
     
             }
@@ -1145,6 +1159,22 @@ input::-webkit-inner-spin-button {
     }
 }
 
+.bookmark-shops-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.bookmark-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+
+    .shop-product-item {
+        cursor: unset;
+    }
+}
+
 /* SINGLE SHOP PAGE */
 .shop-cover {
     width: 100%;
@@ -1204,7 +1234,7 @@ input::-webkit-inner-spin-button {
 
     label {
         font-weight: 500;
-        font-family: "IranYekanBold";
+        font-family: "VazirBold";
     }
 
     svg {
@@ -1243,31 +1273,56 @@ input::-webkit-inner-spin-button {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 10px;
     border: 1px solid var(--border-color);
-    padding: 5px;
+    padding: 8px;
     border-radius: var(--border-radius-small);
     cursor: pointer;
 
-    .shop-product-info {
-        width: 100%;
+    .shop-product-main {
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
-        .shop-product-title {
+        .shop-product-info {
             width: 100%;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 5px;
-
-            .shop-product-rating {
+    
+            .shop-product-header {
+                width: 100%;
                 display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                
-                p {
-                    font-size: 11px;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 5px;
+    
+                .shop-product-rating {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    p {
+                        font-size: 11px;
+                    }
                 }
+    
+                .shop-product-bookmark {
+                    button.favorite-button {
+                        width: 40px;
+                        max-width: 40px;
+                        min-width: 40px;
+            
+                        svg {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .shop-product-alt {
+        .shop-product-description {
+            p {
+                font-size: 12px;
             }
         }
 
@@ -1276,18 +1331,25 @@ input::-webkit-inner-spin-button {
             align-items: center;
             gap: 10px;
         }
+    } 
+}
+
+.shop-product-price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+
+    .product-discounted-price {
+        text-decoration: line-through;
+        color: #ccc;
+        font-size: 15px;
     }
 
-    .shop-product-description {
-        p {
-            font-size: 12px;
-        }
-    }
-
-    .shop-product-price {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+    .product-final-price {
+        font-weight: 600;
+        font-family: "VazirBold";
+        font-size: 16px;
     }
 }
 
@@ -1297,14 +1359,33 @@ input::-webkit-inner-spin-button {
 
     .shop-product-item {
         border: none;
+        cursor: initial;
     }
 }
 
 .shop-comments {
     .shop-new-comment {
         margin-bottom: 30px;
-        button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .panel-modal {
             width: 100%;
+
+            button {
+                width: 100%;
+            }
+        }
+
+        button.favorite-button {
+            width: 40px;
+            max-width: 40px;
+            min-width: 40px;
+
+            svg {
+                margin-left: 0;
+            }
         }
     }
 }

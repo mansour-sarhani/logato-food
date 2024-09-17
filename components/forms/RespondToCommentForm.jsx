@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import userAddAddress from "@/functions/user/userAddAddress";
-import LTTextArea from "@/components/global/LTTextArea";
+import LTTextArea from "@/components/inputs/LTTextArea";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";

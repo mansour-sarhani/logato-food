@@ -1,12 +1,23 @@
 import { USER_SEARCH_ALL_QUERY } from "@/redux/features/userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-async function userSearchAll(dispatch, enqueueSnackbar, query, setData) {
+async function userSearchAll(
+	dispatch,
+	enqueueSnackbar,
+	query,
+	setData,
+	setPage,
+	setLimit,
+	setTotal
+) {
 	try {
 		const result = await dispatch(USER_SEARCH_ALL_QUERY(query));
 		const response = unwrapResult(result);
 
 		setData(response.shops);
+		setPage(response.page);
+		setLimit(response.limit);
+		setTotal(response.total);
 	} catch (err) {
 		const errorMessage = err.message;
 
