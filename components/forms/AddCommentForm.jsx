@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
 import addComment from "@/functions/comment/addComment";
-import LTTextArea from "@/components/global/LTTextArea";
+import LTTextArea from "@/components/inputs/LTTextArea";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import FormControl from "@mui/material/FormControl";
@@ -53,6 +53,8 @@ export default function AddCommentForm(props) {
 		}
 		return errors;
 	};
+
+	// console.log(userId);
 
 	return (
 		<Formik

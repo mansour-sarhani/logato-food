@@ -3,8 +3,8 @@ import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import adminAddType from "@/functions/type/adminAddType";
-import LTTextInput from "@/components/global/LTTextInput";
-import FileUploader from "@/components/global/FileUploader";
+import LTTextInput from "@/components/inputs/LTTextInput";
+import FileUploader from "@/components/fileUpload/FileUploader";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 

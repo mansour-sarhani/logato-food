@@ -165,7 +165,7 @@ export default function CommentsPage() {
 												: "-"}
 										</TableCell>
 										<TableCell>
-											{comment.productName !== "null"
+											{comment.productName !== "undefined"
 												? comment.productName
 												: "-"}
 										</TableCell>
@@ -179,6 +179,7 @@ export default function CommentsPage() {
 										<TableCell>
 											<div className="lt-table-actions">
 												<PanelModal
+													data={comment}
 													buttonLabel="تغییر وضعیت"
 													modalHeader="تغییر وضعیت کامنت"
 													type="table"

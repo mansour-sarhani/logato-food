@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function TestPage() {
-	const [data, setData] = useState();
+	const [results, setResults] = useState();
 
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
@@ -14,10 +14,12 @@ export default function TestPage() {
 	const query = "city=1";
 	useEffect(() => {
 		async function getSearchData() {
-			await userSearchAll(dispatch, enqueueSnackbar, query, setData);
+			await userSearchAll(dispatch, enqueueSnackbar, query, setResults);
 		}
 		getSearchData();
-	}, []);
+	}, [query]);
+
+	console.log(results);
 
 	return <div>TestPage</div>;
 }

@@ -3,23 +3,13 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import FA from "@/utils/localizationFa";
 import Loading from "@/components/global/Loading";
 import LTImage from "@/components/global/LTImage";
 import Typography from "@mui/material/Typography";
 
 export default function PanelSidebar({ user }) {
 	const path = usePathname();
-
-	let roleLabel = "";
-	if (user && user.role === "superAdmin") {
-		roleLabel = "سوپر ادمین";
-	} else if (user && user.role === "admin") {
-		roleLabel = "ادمین";
-	} else if (user && user.role === "owner") {
-		roleLabel = "فروشنده";
-	} else if (user && user.role === "viewer") {
-		roleLabel = "کاربر";
-	}
 
 	return !user ? (
 		<Loading isLoading={true} />
@@ -48,7 +38,7 @@ export default function PanelSidebar({ user }) {
 					<Typography variant="h6">
 						{user.firstName} {user.lastName}
 					</Typography>
-					<Typography variant="span">{roleLabel}</Typography>
+					<Typography variant="span">{FA.role[user.role]}</Typography>
 				</div>
 			</div>
 			<div className="panel-sidebar-menu">
@@ -180,6 +170,15 @@ export default function PanelSidebar({ user }) {
 						}
 					>
 						<Link href="/panel/profile">حساب کاربری</Link>
+					</li>
+					<li
+						className={
+							path === "/panel/bookmark"
+								? "sidebar-menu-item active-menu"
+								: "sidebar-menu-item"
+						}
+					>
+						<Link href="/panel/bookmark">لیست علاقه مندی ها</Link>
 					</li>
 				</ul>
 			</div>

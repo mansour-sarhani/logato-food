@@ -9,6 +9,7 @@ import adminGetShopsByStatus from "@/functions/shop/adminGetShopsByStatus";
 import adminGetShopsBySearch from "@/functions/shop/adminGetShopsBySearch";
 import adminDeleteShop from "@/functions/shop/adminDeleteShop";
 import useSetStatusLabel from "@/hooks/useSetStatusLabel";
+import { dateFormatter } from "@/utils/dateFormatter";
 import { debounce } from "lodash";
 import NoData from "@/components/global/NoData";
 import LTProgress from "@/components/global/LTProgress";
@@ -33,7 +34,7 @@ import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import AddIcon from "@mui/icons-material/Add";
-import { dateFormatter } from "@/utils/dateFormatter";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export default function ShopsManagementPage() {
 	const [shops, setShops] = useState(null);
@@ -254,6 +255,20 @@ export default function ShopsManagementPage() {
 										</TableCell>
 										<TableCell>
 											<div className="lt-table-actions">
+												<Button
+													variant="outlined"
+													color="success"
+													disabled={
+														shop.status !== "active"
+													}
+												>
+													<Link
+														href={`/shop/${shop.id}`}
+													>
+														<VisibilityIcon />
+														مشاهده فروشگاه
+													</Link>
+												</Button>
 												<Tooltip
 													title="ویرایش فروشگاه"
 													placement="top"

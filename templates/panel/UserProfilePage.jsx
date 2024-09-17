@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSnackbar } from "notistack";
 import userDeleteAddress from "@/functions/user/userDeleteAddress";
 import { dateFormatter } from "@/utils/dateFormatter";
+import FA from "@/utils/localizationFa";
 import PanelModal from "@/components/panel/PanelModal";
 import LTProgress from "@/components/global/LTProgress";
 import AddAddressForm from "@/components/forms/AddAddressForm";
@@ -138,7 +139,7 @@ export default function UserProfilePage() {
 					<div className="panel-view-item">
 						<div className="panel-view-item-key">نقش کاربری:</div>
 						<div className="panel-view-item-value">
-							{userData.role}
+							{FA.role[userData.role]}
 						</div>
 					</div>
 					<div className="panel-view-item">
@@ -173,7 +174,6 @@ export default function UserProfilePage() {
 										<TableCell>آدرس</TableCell>
 										<TableCell>شهر</TableCell>
 										<TableCell>استان</TableCell>
-										<TableCell>آدرس پیش فرض</TableCell>
 										<TableCell>عملیات</TableCell>
 									</TableRow>
 								</TableHead>
@@ -188,6 +188,18 @@ export default function UserProfilePage() {
 										<TableRow key={address._id}>
 											<TableCell>
 												{address.title}
+												{address.default && (
+													<Chip
+														icon={
+															<CheckCircleIcon />
+														}
+														label="آدرس پیش فرض"
+														color="success"
+														sx={{
+															marginRight: "10px",
+														}}
+													/>
+												)}
 											</TableCell>
 											<TableCell>
 												{address.address}
@@ -197,23 +209,6 @@ export default function UserProfilePage() {
 											</TableCell>
 											<TableCell>
 												{address.cityState}
-											</TableCell>
-											<TableCell>
-												{address.default ? (
-													<Chip
-														icon={
-															<CheckCircleIcon />
-														}
-														label="بله"
-														color="success"
-													/>
-												) : (
-													<Chip
-														icon={<CancelIcon />}
-														label="خیر"
-														color="error"
-													/>
-												)}
 											</TableCell>
 											<TableCell>
 												<div className="lt-table-actions">

@@ -4,8 +4,8 @@ import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import adminAddCity from "@/functions/city/adminAddCity";
-import StateAndCitySelect from "@/components/global/StateAndCitySelect";
-import LTTextInput from "@/components/global/LTTextInput";
+import StateAndCitySelect from "@/components/inputs/StateAndCitySelect";
+import LTTextInput from "@/components/inputs/LTTextInput";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 

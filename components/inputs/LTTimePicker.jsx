@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
+import "dayjs/locale/fa";
 import { timeFormatter } from "@/utils/timeFormatter";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -22,7 +23,7 @@ export default function LTTimePicker(props) {
 	}, [savedValue]);
 
 	return (
-		<LocalizationProvider dateAdapter={AdapterDayjs}>
+		<LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fa">
 			<DemoContainer components={["TimePicker"]}>
 				<div className="lt-timepicker-container">
 					<label className="lt-label">{label}</label>

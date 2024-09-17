@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Formik, Form } from "formik";
-import LTSearchInput from "@/components/global/LTSearchInput";
+import LTSearchInput from "@/components/inputs/LTSearchInput";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";

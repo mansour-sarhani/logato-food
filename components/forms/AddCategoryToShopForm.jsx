@@ -3,7 +3,7 @@ import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import addCategoryToShop from "@/functions/shop/addCategoryToShop";
-import LTTextInput from "@/components/global/LTTextInput";
+import LTTextInput from "@/components/inputs/LTTextInput";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 

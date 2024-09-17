@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import adminGetAllUsers from "@/functions/admin/adminGetAllUsers";
 import useSetStatusLabel from "@/hooks/useSetStatusLabel";
+import FA from "@/utils/localizationFa";
 import Image from "next/image";
 import PanelModal from "@/components/panel/PanelModal";
 import NoData from "@/components/global/NoData";
@@ -121,7 +122,9 @@ export default function UsersPage() {
 										<TableCell>{user.firstName}</TableCell>
 										<TableCell>{user.lastName}</TableCell>
 										<TableCell>{user.email}</TableCell>
-										<TableCell>{user.role}</TableCell>
+										<TableCell>
+											{FA.role[user.role]}
+										</TableCell>
 										<TableCell>
 											{useSetStatusLabel(user.status)}
 										</TableCell>

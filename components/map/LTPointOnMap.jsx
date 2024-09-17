@@ -6,7 +6,7 @@ import { Marker, Popup } from "react-leaflet";
 import { useState } from "react";
 import { useRef } from "react";
 import { useMemo } from "react";
-import { LTMarker } from "@/components/global/LTMarker";
+import { LTMarker } from "@/components/map/LTMarker";
 
 export default function LTPointOnMap({
 	setFieldValue,

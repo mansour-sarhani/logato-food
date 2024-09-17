@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useSnackbar } from "notistack";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import userSearchAll from "@/functions/user/userSearchAll";
 import getAllCities from "@/functions/city/getAllCities";
 import getAllTypes from "@/functions/type/getAllTypes";
@@ -18,13 +18,13 @@ import FormGroup from "@mui/material/FormGroup";
 import Typography from "@mui/material/Typography";
 import debounce from "lodash/debounce";
 
-export default function SearchSidebar({ setData }) {
-	const [page, setPage] = useState(1);
-	const [limit, setLimit] = useState(10);
-	const [total, setTotal] = useState(0);
-	const [sortBy, setSortBy] = useState("createdAt");
-	const [order, setOrder] = useState("desc");
-	const [term, setTerm] = useState(null);
+export default function SearchSidebar({
+	setData,
+	setPage,
+	setLimit,
+	setTotal,
+}) {
+	const [term, setTerm] = useState("");
 	const [cities, setCities] = useState([]);
 	const [types, setTypes] = useState([]);
 	const [selectedCity, setSelectedCity] = useState(null);
@@ -35,24 +35,14 @@ export default function SearchSidebar({ setData }) {
 	const [doReload, setDoReload] = useState(true);
 
 	const dispatch = useDispatch();
+	const { enqueueSnackbar } = useSnackbar();
+
 	const searchParams = useSearchParams();
 	const router = useRouter();
 	const pathname = usePathname();
-	const { enqueueSnackbar } = useSnackbar();
 
-	const loading = useSelector((state) => state.user.status);
-
-	const city = searchParams.get("city");
-	const type = searchParams.get("type");
+	const typeQuery = searchParams.get("type");
 	const termQuery = searchParams.get("term");
-	const category = searchParams.get("category");
-	const subCategory = searchParams.get("subCategory");
-	const latitude = searchParams.get("latitude");
-	const longitude = searchParams.get("longitude");
-	const pageQuery = searchParams.get("page");
-	const limitQuery = searchParams.get("limit");
-	const sortByQuery = searchParams.get("sortBy");
-	const orderQuery = searchParams.get("order");
 
 	const query = searchParams.toString();
 
@@ -65,14 +55,11 @@ export default function SearchSidebar({ setData }) {
 		[searchParams]
 	);
 
-	const searchByTerm = useCallback(
-		debounce((e) => {
-			setTerm(e.target.value);
-			router.push(
-				`${pathname}?${createQueryString("term", e.target.value)}`
-			);
+	const searchTerm = useCallback(
+		debounce((value) => {
+			router.push(`${pathname}?${createQueryString("term", value)}`);
 			setDoReload(!doReload);
-		}, 500),
+		}, 1000),
 		[createQueryString, pathname, router, setDoReload]
 	);
 
@@ -118,11 +105,6 @@ export default function SearchSidebar({ setData }) {
 		});
 	};
 
-	const handleSearchClick = () => {
-		router.push(`${pathname}?${createQueryString("term", term)}`);
-		setDoReload(!doReload);
-	};
-
 	useEffect(() => {
 		async function fetchInitialData() {
 			await getAllCities(dispatch, enqueueSnackbar, setCities);
@@ -131,15 +113,12 @@ export default function SearchSidebar({ setData }) {
 			if (termQuery) {
 				setTerm(termQuery);
 			}
-			if (city) {
-				setSelectedCity(city);
-			}
-			if (type) {
-				setSelectedType(type);
+			if (typeQuery) {
+				setSelectedType(typeQuery);
 				getCategoriesByTypeValue(
 					dispatch,
 					enqueueSnackbar,
-					type,
+					typeQuery,
 					setCategories
 				);
 			}
@@ -147,16 +126,20 @@ export default function SearchSidebar({ setData }) {
 		fetchInitialData();
 	}, []);
 
-	// useEffect(() => {
-	// 	if (query) {
-	// 		async function getSearchData() {
-	// 			await userSearchAll(dispatch, enqueueSnackbar, query, setData);
-	// 		}
-	// 		getSearchData();
-	// 	} else {
-	// 		return;
-	// 	}
-	// }, [searchParams]);
+	useEffect(() => {
+		async function getSearchData() {
+			await userSearchAll(
+				dispatch,
+				enqueueSnackbar,
+				query,
+				setData,
+				setPage,
+				setLimit,
+				setTotal
+			);
+		}
+		getSearchData();
+	}, [query, dispatch, enqueueSnackbar]);
 
 	return (
 		<div className="search-sidebar-container">
@@ -169,8 +152,11 @@ export default function SearchSidebar({ setData }) {
 						<input
 							className="lt-input"
 							placeholder="نام فروشگاه یا آیتم ..."
-							value={term || ""}
-							onChange={(e) => searchByTerm(e)}
+							value={term}
+							onChange={(e) => {
+								setTerm(e.target.value);
+								searchTerm(e.target.value);
+							}}
 						/>
 					</FormControl>
 				</div>

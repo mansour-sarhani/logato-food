@@ -59,7 +59,7 @@
 
 /* GLOBAL */
 body {
-  font-family: "IranYekan", sans-serif;
+  font-family: "Vazir", sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   direction: rtl;
@@ -120,7 +120,7 @@ button a {
 .lt-label {
   margin-bottom: 0.5rem;
   width: 100%;
-  font-family: "IranYekanBold";
+  font-family: "VazirBold";
   font-weight: 500;
 }
 
@@ -138,7 +138,7 @@ input:focus-visible {
   color: var(--input-text-color);
   border-radius: var(--border-radius-medium);
   border: 1px solid var(--border-color);
-  font-family: "IranYekan";
+  font-family: "Vazir";
 }
 
 .lt-input:disabled {
@@ -157,7 +157,7 @@ input:focus-visible {
   color: var(--input-text-color);
   border-radius: var(--border-radius-medium);
   border: 1px solid var(--border-color);
-  font-family: "IranYekan";
+  font-family: "Vazir";
 }
 
 .lt-password-field {
@@ -396,7 +396,7 @@ input::-webkit-inner-spin-button {
 
 /* AUTH PAGE */
 .auth-page-container {
-  width: 75%;
+  width: 80%;
   height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
@@ -404,7 +404,7 @@ input::-webkit-inner-spin-button {
   margin: 0 auto;
 }
 .auth-page-container .auth-page-box {
-  width: 100%;
+  width: 40%;
   padding: 20px;
   background-color: var(--background-color);
   border-radius: var(--border-radius-medium);
@@ -420,6 +420,14 @@ input::-webkit-inner-spin-button {
 .auth-page-container .auth-page-box .login-remember-me a {
   font-size: 13px;
   color: var(--primary-color);
+}
+.auth-page-container .auth-page-image {
+  width: 60%;
+  min-width: 50%;
+}
+.auth-page-container .auth-page-image img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* HOME PAGE */
@@ -488,7 +496,7 @@ input::-webkit-inner-spin-button {
 .shop-types-container {
   display: flex;
   justify-content: center;
-  margin: 80px 0 40px;
+  margin: 40px 0 40px;
   position: relative;
   z-index: 2;
 }
@@ -559,21 +567,26 @@ input::-webkit-inner-spin-button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 30px;
 }
-.search-results-grid .search-result-item {
+
+/* SHOP ITEM */
+.shop-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.search-results-grid .search-result-item .search-result-item-image {
+.shop-item .shop-item-image {
   position: relative;
   height: 120px;
+  width: 100%;
 }
-.search-results-grid .search-result-item .search-result-item-image .search-result-cover-image .MuiAvatar-rounded {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.shop-item .shop-item-image .shop-item-cover-image img {
+  width: 100%;
+  max-width: 100%;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
-.search-results-grid .search-result-item .search-result-item-image .search-result-logo-image {
+.shop-item .shop-item-image .shop-item-logo-image {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -582,7 +595,7 @@ input::-webkit-inner-spin-button {
   right: 50%;
   transform: translate(50%, 0);
 }
-.search-results-grid .search-result-item .search-result-item-details {
+.shop-item .shop-item-details {
   width: 100%;
   height: 100%;
   padding: 50px 15px 15px;
@@ -595,7 +608,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
 }
-.search-results-grid .search-result-item .search-result-item-details .search-result-item-categories {
+.shop-item .shop-item-details .shop-item-categories {
   display: flex;
   gap: 5px;
 }
@@ -747,7 +760,7 @@ input::-webkit-inner-spin-button {
 }
 .panel-sidebar-container .panel-sidebar-menu ul li.active-menu a {
   color: var(--primary-color) !important;
-  font-family: "IranYekanBold";
+  font-family: "VazirBold";
 }
 
 .panel-inner-header {
@@ -1025,6 +1038,21 @@ input::-webkit-inner-spin-button {
   font-size: 16px;
 }
 
+.bookmark-shops-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.bookmark-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.bookmark-products-grid .shop-product-item {
+  cursor: unset;
+}
+
 /* SINGLE SHOP PAGE */
 .shop-cover {
   width: 100%;
@@ -1079,7 +1107,7 @@ input::-webkit-inner-spin-button {
 }
 .shop-single-row label {
   font-weight: 500;
-  font-family: "IranYekanBold";
+  font-family: "VazirBold";
 }
 .shop-single-row svg {
   color: var(--primary-color);
@@ -1113,43 +1141,66 @@ input::-webkit-inner-spin-button {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 10px;
   border: 1px solid var(--border-color);
-  padding: 5px;
+  padding: 8px;
   border-radius: var(--border-radius-small);
   cursor: pointer;
 }
-.shop-product-item .shop-product-info {
+.shop-product-item .shop-product-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.shop-product-item .shop-product-main .shop-product-info {
   width: 100%;
 }
-.shop-product-item .shop-product-info .shop-product-title {
+.shop-product-item .shop-product-main .shop-product-info .shop-product-header {
   width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 5px;
 }
-.shop-product-item .shop-product-info .shop-product-title .shop-product-rating {
+.shop-product-item .shop-product-main .shop-product-info .shop-product-header .shop-product-rating {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
-.shop-product-item .shop-product-info .shop-product-title .shop-product-rating p {
+.shop-product-item .shop-product-main .shop-product-info .shop-product-header .shop-product-rating p {
   font-size: 11px;
 }
-.shop-product-item .shop-product-info .shop-product-measurement {
+.shop-product-item .shop-product-main .shop-product-info .shop-product-header .shop-product-bookmark button.favorite-button {
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+}
+.shop-product-item .shop-product-main .shop-product-info .shop-product-header .shop-product-bookmark button.favorite-button svg {
+  margin-left: 0;
+}
+.shop-product-item .shop-product-alt .shop-product-description p {
+  font-size: 12px;
+}
+.shop-product-item .shop-product-alt .shop-product-measurement {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.shop-product-item .shop-product-description p {
-  font-size: 12px;
-}
-.shop-product-item .shop-product-price {
+
+.shop-product-price {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.shop-product-price .product-discounted-price {
+  text-decoration: line-through;
+  color: #ccc;
+  font-size: 15px;
+}
+.shop-product-price .product-final-price {
+  font-weight: 600;
+  font-family: "VazirBold";
+  font-size: 16px;
 }
 
 .product-modal .MuiPaper-root {
@@ -1158,13 +1209,28 @@ input::-webkit-inner-spin-button {
 }
 .product-modal .MuiPaper-root .shop-product-item {
   border: none;
+  cursor: initial;
 }
 
 .shop-comments .shop-new-comment {
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.shop-comments .shop-new-comment button {
+.shop-comments .shop-new-comment .panel-modal {
   width: 100%;
+}
+.shop-comments .shop-new-comment .panel-modal button {
+  width: 100%;
+}
+.shop-comments .shop-new-comment button.favorite-button {
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+}
+.shop-comments .shop-new-comment button.favorite-button svg {
+  margin-left: 0;
 }
 
 .shop-comments-wrapper {

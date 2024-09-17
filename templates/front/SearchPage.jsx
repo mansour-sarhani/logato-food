@@ -1,18 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import SearchSidebar from "@/layouts/sidebar/SearchSidebar";
-import LTImage from "@/components/global/LTImage";
-import Button from "@mui/material/Button";
-import Rating from "@mui/material/Rating";
-import Chip from "@mui/material/Chip";
 import NoData from "@/components/global/NoData";
 import LTProgress from "@/components/global/LTProgress";
+import ShopItem from "@/components/shop/ShopItem";
+import Button from "@mui/material/Button";
 
 export default function SearchPage() {
 	const [data, setData] = useState();
 	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(10);
+	const [total, setTotal] = useState(0);
 	const [sortBy, setSortBy] = useState("createdAt");
 	const [order, setOrder] = useState("desc");
 
@@ -30,7 +29,12 @@ export default function SearchPage() {
 			<div className="lt-container">
 				<div className="page-wrapper front-page-wrapper">
 					<div className="sidebar">
-						<SearchSidebar setData={setData} />
+						<SearchSidebar
+							setData={setData}
+							setLimit={setLimit}
+							setPage={setPage}
+							setTotal={setTotal}
+						/>
 					</div>
 					<div className="content">
 						<div className="search-results">
@@ -62,65 +66,7 @@ export default function SearchPage() {
 							) : (
 								<div className="search-results-grid">
 									{data.map((item) => (
-										<Link
-											key={item.id}
-											href={`/shop/${item.id}`}
-										>
-											<div className="search-result-item">
-												<div className="search-result-item-image">
-													<div className="search-result-cover-image">
-														<LTImage
-															name={item.cover}
-															width={"100%"}
-															height={"140px"}
-														/>
-													</div>
-													<div className="search-result-logo-image">
-														<LTImage
-															name={item.logo}
-															variant="circle"
-															width={80}
-															height={80}
-														/>
-													</div>
-												</div>
-												<div className="search-result-item-details">
-													<div className="search-result-item-name">
-														<h6>{item.name}</h6>
-													</div>
-													<div className="search-result-item-rating">
-														<Rating
-															name="read-only"
-															value={
-																item.averageRating
-															}
-															precision={0.1}
-															readOnly
-															size="small"
-															sx={{
-																direction:
-																	"ltr",
-															}}
-														/>
-													</div>
-													<div className="search-result-item-categories">
-														{item.categories.map(
-															(category) => (
-																<Chip
-																	key={
-																		category.categoryId
-																	}
-																	label={
-																		category.categoryLabel
-																	}
-																	size="small"
-																/>
-															)
-														)}
-													</div>
-												</div>
-											</div>
-										</Link>
+										<ShopItem item={item} key={item.id} />
 									))}
 								</div>
 							)}

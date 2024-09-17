@@ -4,7 +4,7 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Marker, Popup } from "react-leaflet";
 import { useRef } from "react";
-import { LTMarker } from "@/components/global/LTMarker";
+import { LTMarker } from "@/components/map/LTMarker";
 
 export default function LTMap({ latitude, longitude, height = "400px" }) {
 	const markerRef = useRef(null);

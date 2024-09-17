@@ -1,3 +1,4 @@
+import FA from "@/utils/localizationFa";
 import Chip from "@mui/material/Chip";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -9,41 +10,61 @@ export default function useSetStatusLabel(status) {
 	switch (status) {
 		case "active":
 			return (
-				<Chip icon={<CheckCircleIcon />} label="فعال" color="success" />
+				<Chip
+					icon={<CheckCircleIcon />}
+					label={FA.status.active}
+					color="success"
+				/>
 			);
 
 		case "published":
 			return (
 				<Chip
 					icon={<CheckCircleIcon />}
-					label="منتشرشده"
+					label={FA.status.published}
 					color="success"
 				/>
 			);
 
 		case "inactive":
 			return (
-				<Chip icon={<CancelIcon />} label="غیر فعال" color="error" />
+				<Chip
+					icon={<CancelIcon />}
+					label={FA.status.inactive}
+					color="error"
+				/>
 			);
 
 		case "rejected":
-			return <Chip icon={<CancelIcon />} label="رد شده" color="error" />;
+			return (
+				<Chip
+					icon={<CancelIcon />}
+					label={FA.status.rejected}
+					color="error"
+				/>
+			);
 
 		case "banned":
 			return (
-				<Chip icon={<BlockIcon />} label="مسدود شده" color="default" />
+				<Chip
+					icon={<BlockIcon />}
+					label={FA.status.banned}
+					color="default"
+				/>
 			);
 
 		case "underReview":
 			return (
 				<Chip
 					icon={<PendingIcon />}
-					label="در حال بازبینی"
+					label={FA.status.underReview}
 					color="warning"
 				/>
 			);
 
 		default:
-			return <Chip icon={<InfoIcon />} label="نامشخص" color="info" />;
+			return (
+				<Chip icon={<InfoIcon />} label={FA.status.NA} color="info" />
+			);
 	}
 }

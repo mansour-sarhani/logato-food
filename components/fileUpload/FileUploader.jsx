@@ -1,4 +1,4 @@
-import styles from "@/components/global/FileUploaderSave.module.css";
+import styles from "@/components/fileUpload/FileUploaderSave.module.css";
 
 import { Fragment, useState } from "react";
 import { useFormikContext } from "formik";

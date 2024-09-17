@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import { Formik, Form } from "formik";
 import updateCategoryOfShop from "@/functions/shop/updateCategoryOfShop";
-import LTTextInput from "@/components/global/LTTextInput";
+import LTTextInput from "@/components/inputs/LTTextInput";
 import Button from "@mui/material/Button";
 import Check from "@mui/icons-material/Check";
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LTMap from "@/components/global/LTMap";
+import LTMap from "@/components/map/LTMap";
 import LTImage from "@/components/global/LTImage";
 import LTProgress from "@/components/global/LTProgress";
 import Alert from "@mui/material/Alert";
