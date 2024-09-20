@@ -168,7 +168,7 @@ export default function UpdateSubCategoryForm(props) {
 							values.status === "active" ? (
 								<Typography>
 									زیر دسته{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										فعال
 									</strong>{" "}
 									است
@@ -176,7 +176,7 @@ export default function UpdateSubCategoryForm(props) {
 							) : (
 								<Typography>
 									زیر دسته{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										غیر فعال
 									</strong>{" "}
 									است

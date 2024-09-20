@@ -24,8 +24,6 @@ export default function UpdateTypeForm(props) {
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 
-	console.log(currentData);
-
 	return (
 		<Formik
 			initialValues={currentData || initialValues}
@@ -95,7 +93,7 @@ export default function UpdateTypeForm(props) {
 							values.status === "active" ? (
 								<Typography>
 									نوع فروشگاه{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										فعال
 									</strong>{" "}
 									است
@@ -103,7 +101,7 @@ export default function UpdateTypeForm(props) {
 							) : (
 								<Typography>
 									نوع فروشگاه{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										غیر فعال
 									</strong>{" "}
 									است

@@ -119,7 +119,7 @@ export default function UpdateCityForm(props) {
 							values.status === "active" ? (
 								<Typography>
 									شهر{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										فعال
 									</strong>{" "}
 									است
@@ -127,7 +127,7 @@ export default function UpdateCityForm(props) {
 							) : (
 								<Typography>
 									شهر{" "}
-									<strong style={{ color: "#FF4500" }}>
+									<strong className="primary-text">
 										غیر فعال
 									</strong>{" "}
 									است

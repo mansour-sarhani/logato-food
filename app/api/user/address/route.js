@@ -84,6 +84,50 @@ export async function POST(req) {
 	}
 }
 
+//GET USER ADDRESSES => "/api/user/address"
+export async function GET() {
+	await dbConnect();
+
+	try {
+		const cookieStore = cookies();
+		const tokenObj = cookieStore.get("logato_token");
+		const token = tokenObj?.value;
+		const secretKey = process.env.JWT_SECRET;
+
+		if (!token) {
+			return NextResponse.json(
+				{ success: false, message: "توکن وجود ندارد." },
+				{ status: 401 }
+			);
+		}
+
+		const validToken = verifyToken(token, secretKey);
+		if (!validToken) {
+			return NextResponse.json(
+				{ success: false, message: "توکن معتبر نیست." },
+				{ status: 401 }
+			);
+		}
+
+		const user = await User.findOne({ token: token });
+		if (!user) {
+			return NextResponse.json(
+				{ success: false, message: "کاربر یافت نشد." },
+				{ status: 404 }
+			);
+		}
+
+		const userAddresses = user.addresses;
+
+		return NextResponse.json({ success: true, data: userAddresses });
+	} catch (error) {
+		return NextResponse.json(
+			{ success: false, error: error.message },
+			{ status: 500 }
+		);
+	}
+}
+
 //USER UPDATE ADDRESS => "/api/user/address?addressId=66bdac7d19634057619f2379"
 export async function PUT(req) {
 	await dbConnect();

@@ -106,11 +106,11 @@ export default function BookmarkPage() {
 							<NoData />
 						) : (
 							<div className="bookmark-shops-grid">
-								{bookmarkedShops.map((item) => (
+								{bookmarkedShops.map((shop) => (
 									<ShopItem
-										item={item}
-										key={item._id}
-										_id={item._id}
+										key={shop._id}
+										shop={shop}
+										_id={shop._id}
 									/>
 								))}
 							</div>
@@ -123,10 +123,12 @@ export default function BookmarkPage() {
 							<NoData />
 						) : (
 							<div className="bookmark-products-grid">
-								{bookmarkedProducts.map((item) => (
+								{bookmarkedProducts.map((product) => (
 									<ProductItem
-										product={item}
-										key={item._id}
+										key={product._id}
+										product={product}
+										user={user}
+										showModal={false}
 									/>
 								))}
 							</div>

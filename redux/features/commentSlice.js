@@ -74,11 +74,28 @@ export const RESPOND_TO_COMMENT = createAsyncThunk(
 	}
 );
 
-export const GET_ALL_COMMENTS = createAsyncThunk(
-	"comment/GET_ALL_COMMENTS",
+export const ADMIN_GET_ALL_COMMENTS = createAsyncThunk(
+	"comment/ADMIN_GET_ALL_COMMENTS",
 	async (_, { rejectWithValue }) => {
 		try {
-			const response = await http.get("/api/comment");
+			const response = await http.get("/api/admin/comment");
+			return response.data;
+		} catch (err) {
+			if (!err.response) {
+				throw err;
+			}
+			return rejectWithValue(err.response.data);
+		}
+	}
+);
+
+export const ADMIN_GET_COMMENTS_BY_STATUS = createAsyncThunk(
+	"comment/ADMIN_GET_COMMENTS_BY_STATUS",
+	async (status, { rejectWithValue }) => {
+		try {
+			const response = await http.get(
+				"/api/admin/comment?status=" + status
+			);
 			return response.data;
 		} catch (err) {
 			if (!err.response) {
@@ -155,21 +172,6 @@ export const GET_COMMENT_FOR_SHOP_PRODUCTS = createAsyncThunk(
 	}
 );
 
-export const GET_COMMENTS_BY_STATUS = createAsyncThunk(
-	"comment/GET_COMMENTS_BY_STATUS",
-	async (status, { rejectWithValue }) => {
-		try {
-			const response = await http.get("/api/comment?status=" + status);
-			return response.data;
-		} catch (err) {
-			if (!err.response) {
-				throw err;
-			}
-			return rejectWithValue(err.response.data);
-		}
-	}
-);
-
 export const GET_COMMENTS_OF_USER = createAsyncThunk(
 	"comment/GET_COMMENTS_OF_USER",
 	async (userId, { rejectWithValue }) => {
@@ -200,8 +202,11 @@ export const commentSlice = createSlice({
 		//RESPOND_TO_COMMENT
 		handleAsyncActions(builder, RESPOND_TO_COMMENT);
 
-		//GET_ALL_COMMENTS
-		handleAsyncActions(builder, GET_ALL_COMMENTS);
+		//ADMIN_GET_ALL_COMMENTS
+		handleAsyncActions(builder, ADMIN_GET_ALL_COMMENTS);
+
+		//ADMIN_GET_COMMENTS_BY_STATUS
+		handleAsyncActions(builder, ADMIN_GET_COMMENTS_BY_STATUS);
 
 		//GET_COMMENT_BY_ID
 		handleAsyncActions(builder, GET_COMMENT_BY_ID);
@@ -214,9 +219,6 @@ export const commentSlice = createSlice({
 
 		//GET_COMMENT_FOR_SHOP_PRODUCTS
 		handleAsyncActions(builder, GET_COMMENT_FOR_SHOP_PRODUCTS);
-
-		//GET_COMMENTS_BY_STATUS
-		handleAsyncActions(builder, GET_COMMENTS_BY_STATUS);
 
 		//GET_COMMENTS_OF_USER
 		handleAsyncActions(builder, GET_COMMENTS_OF_USER);

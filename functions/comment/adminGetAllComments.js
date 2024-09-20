@@ -1,14 +1,9 @@
-import { GET_COMMENTS_BY_STATUS } from "@/redux/features/commentSlice";
+import { ADMIN_GET_ALL_COMMENTS } from "@/redux/features/commentSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-async function getCommentsByStatus(
-	dispatch,
-	enqueueSnackbar,
-	status,
-	setState
-) {
+async function adminGetAllComments(dispatch, enqueueSnackbar, setState) {
 	try {
-		const result = await dispatch(GET_COMMENTS_BY_STATUS(status));
+		const result = await dispatch(ADMIN_GET_ALL_COMMENTS());
 		const response = unwrapResult(result);
 
 		setState(response.data);
@@ -21,4 +16,4 @@ async function getCommentsByStatus(
 	}
 }
 
-export default getCommentsByStatus;
+export default adminGetAllComments;

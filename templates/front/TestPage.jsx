@@ -19,7 +19,5 @@ export default function TestPage() {
 		getSearchData();
 	}, [query]);
 
-	console.log(results);
-
 	return <div>TestPage</div>;
 }

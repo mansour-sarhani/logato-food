@@ -1,9 +1,9 @@
-import { GET_ALL_COMMENTS } from "@/redux/features/commentSlice";
+import { GET_USER_ADDRESSES } from "@/redux/features/userSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
-async function getAllComments(dispatch, enqueueSnackbar, setState) {
+async function getUserAddresses(dispatch, enqueueSnackbar, setState) {
 	try {
-		const result = await dispatch(GET_ALL_COMMENTS());
+		const result = await dispatch(GET_USER_ADDRESSES());
 		const response = unwrapResult(result);
 
 		setState(response.data);
@@ -16,4 +16,4 @@ async function getAllComments(dispatch, enqueueSnackbar, setState) {
 	}
 }
 
-export default getAllComments;
+export default getUserAddresses;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
@@ -11,15 +12,19 @@ import Loading from "@/components/global/Loading";
 import userLogout from "@/functions/auth/userLogout";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/navigation";
+import { toggleTheme } from "@/redux/features/publicSlice";
+import HeaderAddress from "@/components/global/HeaderAddress";
 
 export default function PanelHeader({ user }) {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
+	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 	const router = useRouter();
 
 	const toggleDarkMode = () => {
 		setIsDarkMode((prevMode) => !prevMode);
+		dispatch(toggleTheme({ theme: isDarkMode ? "light" : "dark" }));
 	};
 
 	const handleLogout = async () => {
@@ -27,10 +32,25 @@ export default function PanelHeader({ user }) {
 	};
 
 	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const theme = localStorage.getItem("theme");
+			if (theme === "dark") {
+				setIsDarkMode(true);
+				dispatch(toggleTheme({ theme: "dark" }));
+			} else {
+				setIsDarkMode(false);
+				dispatch(toggleTheme({ theme: "light" }));
+			}
+		}
+	}, [dispatch]);
+
+	useEffect(() => {
 		if (isDarkMode) {
 			document.documentElement.setAttribute("data-theme", "dark");
+			document.documentElement.classList.add("dark");
 		} else {
 			document.documentElement.removeAttribute("data-theme");
+			document.documentElement.classList.remove("dark");
 		}
 	}, [isDarkMode]);
 
@@ -43,8 +63,11 @@ export default function PanelHeader({ user }) {
 					<li className="menu-item link-item">
 						<Link href="/">
 							<HomeOutlinedIcon />
-							خانه
+							صفحه اصلی
 						</Link>
+					</li>
+					<li className="menu-item link-item">
+						<HeaderAddress />
 					</li>
 				</ul>
 			</div>

@@ -4,21 +4,20 @@
 :root {
     --primary-color: #{$primary-color};
     --secondary-color: #{$secondary-color};
-    --accent-color: #{$accent-color};
-    --highlight-color: #{$highlight-color};
     --success-color: #{$success-color}; 
     --warning-color: #{$warning-color}; 
     --info-color: #{$info-color}; 
     --error-color: #{$error-color}; 
-    --text-color: #{$text-dark};
-    --text-light: #{$text-light};
-    --background-color: #{$background-light};
-    --border-color: #{$border-color};
+    --text-color: #{$light-text-color};
+    --text-white-color: #{$text-white-color};
+    --text-black-color: #{$text-black-color};
+    --bg-color: #{$light-bg-color};
+    --border-color: #{$light-border-color};
     --border-radius-small: #{$border-radius-small};
     --border-radius-medium: #{$border-radius-medium};
     --border-radius-large: #{$border-radius-large};
-    --input-background: #{$input-background-light};
-    --input-text-color: #{$input-text-light};
+    --input-bg-color: #{$light-input-bg-color};
+    --input-text-color: #{$light-input-text-color};
     --all-transition: #{$all-transition};
     --btn-transition: #{$btn-transition};
     --box-shadow: #{$box-shadow};
@@ -26,32 +25,21 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --primary-color: #{$primary-color-dark};
-    --secondary-color: #{$secondary-color-dark};
-    --accent-color: #{$accent-color-dark};
-    --highlight-color: #{$highlight-color-dark};
-    --success-color: #{$success-color-dark}; 
-    --warning-color: #{$warning-color-dark}; 
-    --info-color: #{$info-color-dark}; 
-    --error-color: #{$error-color-dark}; 
-    --text-color: #{$text-dark-mode};
-    --text-light: #{$text-light};
-    --background-color: #{$background-light-mode};
-    --border-color: #{$border-color-dark};
-    --border-radius-small: #{$border-radius-small};
-    --border-radius-medium: #{$border-radius-medium};
-    --border-radius-large: #{$border-radius-large};
-    --input-background: #{$input-background-dark};
-    --input-text-color: #{$input-text-dark};
-    --all-transition: #{$all-transition};
-    --btn-transition: #{$btn-transition};
-    --box-shadow: #{$box-shadow};
+    --primary-color: #{$secondary-color};
+    --secondary-color: #{$primary-color};
+    --text-color: #{$dark-text-color};
+    --heading-color: #{$dark-heading-color};
+    --bg-color: #{$dark-bg-color};
+    --card-color: #{$dark-card-color};
+    --border-color: #{$dark-border-color};
+    --input-bg-color: #{$dark-input-bg-color};
+    --input-text-color: #{$dark-input-text-color};
 }
 
 /* GLOBAL */
 body {
     font-family: "Vazir", sans-serif;
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
     direction: rtl;
     text-align: right;
@@ -125,7 +113,7 @@ input:focus-visible {
 	height: 36px;
 	padding: 8px;
     font-size: 0.875rem;
-	background-color: var(--input-background);
+	background-color: var(--input-bg-color);
     color: var(--input-text-color);
     border-radius: var(--border-radius-medium);
     border: 1px solid var(--border-color);
@@ -144,11 +132,16 @@ input:focus-visible {
     background: #fff;
     padding: 8px;
     font-size: 0.875rem;
-    background-color: var(--input-background);
+    background-color: var(--input-bg-color);
     color: var(--input-text-color);
     border-radius: var(--border-radius-medium);
     border: 1px solid var(--border-color);
     font-family: "Vazir";
+
+    &:focus-within {
+        border-color: var(--primary-color);
+        outline: var(--primary-color);
+    }
 }
 
 .lt-password-field {
@@ -182,7 +175,7 @@ input:focus-visible {
 .lt-select {
     margin-top: 0 !important;
     height: 36px;
-    background-color: var(--input-background);
+    background-color: var(--input-bg-color);
     color: var(--input-text-color);
     border-radius: var(--border-radius-medium);
     border: 1px solid var(--border-color);
@@ -338,7 +331,7 @@ input::-webkit-inner-spin-button {
     .header-menu ul {
         li {
             a {
-                color: var(--text-light);
+                color: var(--text-white-color);
             }
 
             &:hover {
@@ -365,6 +358,7 @@ input::-webkit-inner-spin-button {
     align-items: center;
     gap: 5px;
     height: 36px;
+    cursor: pointer;
 
     .header-default-address {
         display: flex;
@@ -434,7 +428,7 @@ input::-webkit-inner-spin-button {
     .auth-page-box {
         width: 40%;
         padding: 20px;
-        background-color: var(--background-color);
+        background-color: var(--bg-color);
         border-radius: var(--border-radius-medium);
         box-shadow: var(--box-shadow);
         z-index: 3;
@@ -502,13 +496,13 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
 
     h1 {
-        color: var(--text-light);
+        color: var(--text-white-color);
         text-align: center;
         margin-bottom: 20px;
     }
 
     h2 {
-        color: var(--text-light);
+        color: var(--text-white-color);
         text-align: center;
         margin-bottom: 20px;
     }
@@ -561,18 +555,17 @@ input::-webkit-inner-spin-button {
         }
 
         h6 {
-            color: var(--text-light);
+            color: var(--text-white-color);
         }
     }
 }
 
 /* SEARCH PAGE */
 .search-sidebar-container {
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     height: 100%;
     width: 100%;
     border-radius: var(--border-radius-medium);
-    padding: 20px;
 }
 
 .sidebar-filters {
@@ -594,7 +587,7 @@ input::-webkit-inner-spin-button {
             padding-right: 10px;
             border-radius: var(--border-radius-small);
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
     }
 }
@@ -606,7 +599,7 @@ input::-webkit-inner-spin-button {
     border-right: 5px solid var(--primary-color);
     padding: 15px;
     border-radius: var(--border-radius-medium);
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     margin-bottom: 40px;
 }
 
@@ -625,7 +618,7 @@ input::-webkit-inner-spin-button {
 
     .shop-item-image {
         position: relative;
-        height: 120px;
+        height: 140px;
         width: 100%;
 
         .shop-item-cover-image {
@@ -642,7 +635,7 @@ input::-webkit-inner-spin-button {
             height: 80px;
             border-radius: 50%;
             position: absolute;
-            bottom: -40px;
+            bottom: -30px;
             right: 50%;
             transform: translate(50%, 0);
         }
@@ -651,8 +644,9 @@ input::-webkit-inner-spin-button {
     .shop-item-details {
         width: 100%;
         height: 100%;
-        padding: 50px 15px 15px;
+        padding: 40px 15px 15px;
         border: 1px solid var(--border-color);
+        border-top: none;
         border-radius: var(--border-radius-medium);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -673,7 +667,7 @@ input::-webkit-inner-spin-button {
     min-height: 100vh;
     height: 100%;
     padding-right: 330px;
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
 
     .panel-header{
         height: 80px;
@@ -754,7 +748,7 @@ input::-webkit-inner-spin-button {
                 min-width: 36px;
                 height: 36px;
                 border-radius: 50%;
-                background: var(--background-color);
+                background: var(--bg-color);
                 color: var(--text-color);
                 padding: 0;
             }
@@ -927,6 +921,31 @@ input::-webkit-inner-spin-button {
     padding: 15px;
     border-radius: var(--border-radius-medium);
     box-shadow: var(--box-shadow);
+
+    .MuiInputBase-root {
+        height: 36px;
+        padding: 8px;
+        padding-right: 0;
+        font-size: 0.875rem;
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
+        border-radius: var(--border-radius-medium);
+        border: 1px solid var(--border-color);
+        font-family: 'Vazir';
+
+        &::before {
+            display: none;
+        }
+
+        svg {
+            margin-left: 5px;
+        }
+    }
+
+    .MuiToggleButton-root.Mui-selected {
+        color: var(--primary-color);
+        background-color: rgba(255, 215, 0, 0.1);
+    }
 }
 
 .panel-shop-view {
@@ -1161,7 +1180,7 @@ input::-webkit-inner-spin-button {
 
 .bookmark-shops-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -1183,22 +1202,26 @@ input::-webkit-inner-spin-button {
     img {
         max-width: 100%;
     }
+}
 
-    .shop-identity {
-        position: absolute;
-        bottom: -35%;
-        right: 50%;
-        transform: translate(50%, 0);
+.shop-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius-medium);
+    padding: 15px;
+    margin: 20px 0;
+
+    .shop-name {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-    
+        gap: 10px;
+
         .shop-title {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 5px;
-            margin-top: 5px;
+            justify-content: space-between;
     
             h1 {
                 text-align: center;
@@ -1208,7 +1231,6 @@ input::-webkit-inner-spin-button {
 
         .shop-rating {
             display: flex;
-            flex-direction: column;
             align-items: center;
             gap: 5px;
         }
@@ -1221,7 +1243,7 @@ input::-webkit-inner-spin-button {
     border-right: 5px solid var(--primary-color);
     padding: 15px;
     border-radius: var(--border-radius-medium);
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     margin-bottom: 20px;
 }
 
@@ -1242,30 +1264,25 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.shop-products-container {
-    margin-top: 120px;
+.product-category-section {
+    margin-top: 20px;
+    border-radius: var(--border-radius-medium);
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 
-    .product-category-section {
-        margin-top: 20px;
-        border-radius: var(--border-radius-medium);
-        margin-bottom: 30px;
-        display: flex;
-        flex-direction: column;
+    h5 {
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 3px solid var(--primary-color);
+        width: max-content;
+        padding-bottom: 5px;
+    }
 
-        h5 {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 3px solid var(--primary-color);
-            width: max-content;
-            align-self: center;
-            padding-bottom: 5px;
-        }
-
-        .shop-products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 30px;
-        }
+    .shop-products-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
     }
 }
 
@@ -1278,7 +1295,6 @@ input::-webkit-inner-spin-button {
     border: 1px solid var(--border-color);
     padding: 8px;
     border-radius: var(--border-radius-small);
-    cursor: pointer;
 
     .shop-product-main {
         display: flex;
@@ -1303,17 +1319,11 @@ input::-webkit-inner-spin-button {
                         font-size: 11px;
                     }
                 }
-    
-                .shop-product-bookmark {
-                    button.favorite-button {
-                        width: 40px;
-                        max-width: 40px;
-                        min-width: 40px;
-            
-                        svg {
-                            margin-left: 0;
-                        }
-                    }
+
+                .product-item-btns {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
                 }
             }
         }
@@ -1353,13 +1363,37 @@ input::-webkit-inner-spin-button {
     }
 }
 
-.product-modal .MuiPaper-root {
-    min-width: 600px;
-    width: max-content;
+.product-modal-content {
+    .MuiPaper-root {
+        min-width: 600px;
+        width: max-content;
+    
+        .shop-product-item {
+            border: none;
+            cursor: initial;
+            margin-bottom: 10px;
+        }
+    }
+}
 
-    .shop-product-item {
-        border: none;
-        cursor: initial;
+
+button.favorite-button {
+    width: 40px;
+    max-width: 40px;
+    min-width: 40px;
+
+    svg {
+        margin-left: 0;
+    }
+}
+
+button.view-button {
+    width: 40px;
+    max-width: 40px;
+    min-width: 40px;
+
+    svg {
+        margin-left: 0;
     }
 }
 
@@ -1375,16 +1409,6 @@ input::-webkit-inner-spin-button {
 
             button {
                 width: 100%;
-            }
-        }
-
-        button.favorite-button {
-            width: 40px;
-            max-width: 40px;
-            min-width: 40px;
-
-            svg {
-                margin-left: 0;
             }
         }
     }
@@ -1414,7 +1438,7 @@ input::-webkit-inner-spin-button {
         .shop-response-comment {
             margin-right: 10px;
             margin-top: 10px;
-            background-color: var(--background-color);
+            background-color: var(--bg-color);
             border-radius: var(--border-radius-small);
             padding: 8px;
 
@@ -1430,5 +1454,185 @@ input::-webkit-inner-spin-button {
 
     button {
         margin-top: 10px;
+    }
+}
+
+
+/********** DARK THEME **********/
+/********** DARK THEME **********/
+/********** DARK THEME **********/
+
+.dark {
+    .header.home-header,
+    .header.front-header {
+        .header-menu {
+            ul {
+                li {
+                    a {
+                        color: var(--text-color);
+                    }
+                }
+    
+                .header-address {
+                    color: var(--text-color);
+                }
+
+                li.menu-item.button-item {
+                    button {
+                        color: var(--text-color);
+                    }
+                    
+                }
+            }
+        }
+        .header-util-button {
+            color: var(--text-color) !important;
+        }
+    }
+    .panel-page-wrapper {
+        .panel-sidebar {
+            background-color: var(--card-color);
+        }
+        .panel-header {
+            background-color: var(--card-color);
+        }
+    }
+    .panel-header-menu {
+        ul {
+            button {
+                color: var(--text-color);
+            }
+            a {
+                color: var(--text-color);
+            }
+        }
+    }
+    .panel-inner-header {
+        background-color: var(--card-color);
+    }
+    .panel-inner-content.form-content {
+        background-color: var(--card-color);
+    }
+    .panel-filters {
+        background-color: var(--card-color);
+        .MuiInputBase-root {
+            background-color: var(--input-bg-color);
+            color: var(--input-text-color);
+
+            svg {
+                color: var(--input-text-color);
+            }
+        }
+    }
+    .shop-item {
+        .shop-item-details {
+            background-color: var(--card-color);
+        }
+    }
+    .bookmark-shops-grid {
+        .shop-item {
+            .shop-item-details {
+                background-color: var(--bg-color);
+            }
+        }
+    }
+    .search-results-header {
+        background-color: var(--card-color);
+    }
+    .search-results-sort button {
+        color: var(--text-color);
+    }
+    .sidebar-filters {
+        .filter-item {
+            .filter-item-label {
+                background-color: var(--card-color);
+            }
+        }
+    }
+    .shop-single-heading {
+        background-color: var(--card-color);
+    }
+    .shop-heading {
+        background-color: var(--card-color);
+    }
+    .shop-product-item {
+        background-color: var(--card-color);
+    }
+    .bookmark-products-grid {
+        .shop-product-item {
+            background-color: var(--bg-color);
+        }
+    }
+    .product-modal-content {
+        .shop-product-item {
+            background-color: var(--text-black-color);
+        }
+    }
+
+    .lt-label {
+        color: var(--text-color);
+    }
+    .lt-select {
+        color: var(--input-text-color);
+
+        option {
+            background-color: var(--bg-color) !important;
+            color: var(--input-text-color)
+        }
+    }
+    .lt-time-picker {
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
+
+        .MuiInputBase-root {
+            color: var(--input-text-color);
+        }
+    }
+    .lt-input:disabled {
+        color: var(--text-color);
+    }
+    .lt-input.search-input {
+        background-color: var(--input-bg-color);
+        color: var(--input-text-color);
+    }
+    
+    .MuiButton-containedPrimary {
+        background-color: var(--primary-color);
+        color: var(--text-black-color);
+
+        a {
+            color: var(--black-color);
+        }
+    }
+    .MuiTableContainer-root {
+        background-color: var(--card-color);
+    }
+    .MuiTableHead-root {
+        background-color: #000;
+    }
+    .Mui-checked {
+        color: var(--primary-color) !important;
+    }
+    .MuiSwitch-track {
+        background-color: #ccc;
+    }
+    .MuiTab-root.Mui-selected {
+        color: var(--primary-color);
+    }
+    .MuiTabs-indicator {
+        background-color: var(--primary-color);
+    }
+    .MuiChip-colorDefault {
+        border: 1px solid var(--border-color);
+        background-color: var(--card-color);
+    }
+    .MuiRadio-root {
+        color: var(--text-color);
+    }
+    .MuiToggleButtonGroup-lastButton {
+        border-left: 1px solid #fff !important;
+    }
+    .MuiCircularProgress-root {
+        color: var(--primary-color);
     }
 }

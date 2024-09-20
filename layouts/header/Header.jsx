@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import userLogout from "@/functions/auth/userLogout";
 import Logo from "@/components/global/Logo";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import HowToRegOutlinedIcon from "@mui/icons-material/HowToRegOutlined";
 import VpnKeyOutlinedIcon from "@mui/icons-material/VpnKeyOutlined";
@@ -16,7 +16,8 @@ import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomi
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import GpsFixedIcon from "@mui/icons-material/GpsFixed";
+import HeaderAddress from "@/components/global/HeaderAddress";
+import { toggleTheme } from "@/redux/features/publicSlice";
 
 export default function Header({ user }) {
 	const [isHome, setIsHome] = useState(true);
@@ -25,6 +26,7 @@ export default function Header({ user }) {
 	const router = useRouter();
 	const pathname = usePathname();
 
+	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 
 	const handleLogout = async () => {
@@ -33,7 +35,21 @@ export default function Header({ user }) {
 
 	const toggleDarkMode = () => {
 		setIsDarkMode((prevMode) => !prevMode);
+		dispatch(toggleTheme({ theme: isDarkMode ? "light" : "dark" }));
 	};
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const theme = localStorage.getItem("theme");
+			if (theme === "dark") {
+				setIsDarkMode(true);
+				dispatch(toggleTheme({ theme: "dark" }));
+			} else {
+				setIsDarkMode(false);
+				dispatch(toggleTheme({ theme: "light" }));
+			}
+		}
+	}, [dispatch]);
 
 	useEffect(() => {
 		if (user === false && pathname.startsWith("/panel/")) {
@@ -52,8 +68,10 @@ export default function Header({ user }) {
 	useEffect(() => {
 		if (isDarkMode) {
 			document.documentElement.setAttribute("data-theme", "dark");
+			document.documentElement.classList.add("dark");
 		} else {
 			document.documentElement.removeAttribute("data-theme");
+			document.documentElement.classList.remove("dark");
 		}
 	}, [isDarkMode]);
 
@@ -73,33 +91,7 @@ export default function Header({ user }) {
 							</li>
 							{user && (
 								<li className="menu-item link-item">
-									<div className="header-address">
-										<GpsFixedIcon />
-										{user.addresses.length > 0 ? (
-											<div className="header-default-address">
-												<Typography variant="body">
-													{
-														user.addresses.find(
-															(addr) =>
-																addr.default
-														).title
-													}
-												</Typography>
-												<Typography variant="body2">
-													(
-													{
-														user.addresses.find(
-															(addr) =>
-																addr.default
-														).address
-													}
-													)
-												</Typography>
-											</div>
-										) : (
-											"آدرس خود را انتخاب کنید"
-										)}
-									</div>
+									<HeaderAddress />
 								</li>
 							)}
 						</ul>
@@ -107,7 +99,7 @@ export default function Header({ user }) {
 					<div className="header-logo">
 						<Link href={"/"}>
 							<Logo
-								color={isHome ? "white" : "black"}
+								color={isHome || isDarkMode ? "white" : "black"}
 								width={243}
 								height={50}
 							/>

@@ -182,7 +182,7 @@
 }
 
 .dark .MuiChip-root .MuiChip-label {
-	color: var(--darkBodyTextColor);
+	color: #fff;
 }
 
 .dark .MuiListItemIcon-root {

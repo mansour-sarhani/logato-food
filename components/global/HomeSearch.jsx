@@ -37,7 +37,7 @@ export default function HomeSearch() {
 						<Button
 							type="submit"
 							variant="contained"
-							color="secondary"
+							color="primary"
 							disabled={isSubmitting}
 						>
 							<SearchOutlinedIcon />
