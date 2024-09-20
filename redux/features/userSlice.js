@@ -168,7 +168,6 @@ export const USER_SEARCH_ALL_QUERY = createAsyncThunk(
 			const response = await http.get(`/api/search?${query}`);
 			return response.data;
 		} catch (err) {
-			console.log("error");
 			if (!err.response) {
 				throw err;
 			}
@@ -227,6 +226,21 @@ export const USER_DELETE_ADDRESS = createAsyncThunk(
 			const response = await http.delete(
 				"/api/user/address?addressId=" + addressId
 			);
+			return response.data;
+		} catch (err) {
+			if (!err.response) {
+				throw err;
+			}
+			return rejectWithValue(err.response.data);
+		}
+	}
+);
+
+export const GET_USER_ADDRESSES = createAsyncThunk(
+	"user/GET_USER_ADDRESSES",
+	async (_, { rejectWithValue }) => {
+		try {
+			const response = await http.get("/api/user/address");
 			return response.data;
 		} catch (err) {
 			if (!err.response) {

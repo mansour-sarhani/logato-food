@@ -3,17 +3,17 @@ import LTImage from "@/components/global/LTImage";
 import Rating from "@mui/material/Rating";
 import Chip from "@mui/material/Chip";
 
-export default function ShopItem({ item, _id }) {
+export default function ShopItem({ shop, _id }) {
 	return (
-		<Link href={`/shop/${_id ? item._id : item.id}`}>
+		<Link href={`/shop/${_id ? shop._id : shop.id}`}>
 			<div className="shop-item">
 				<div className="shop-item-image">
 					<div className="shop-item-cover-image">
-						<LTImage name={item.cover} width={300} height={140} />
+						<LTImage name={shop.cover} width={300} height={140} />
 					</div>
 					<div className="shop-item-logo-image">
 						<LTImage
-							name={item.logo}
+							name={shop.logo}
 							variant="circle"
 							width={80}
 							height={80}
@@ -22,12 +22,12 @@ export default function ShopItem({ item, _id }) {
 				</div>
 				<div className="shop-item-details">
 					<div className="shop-item-name">
-						<h6>{item.name}</h6>
+						<h6>{shop.name}</h6>
 					</div>
 					<div className="shop-item-rating">
 						<Rating
 							name="read-only"
-							value={item.averageRating}
+							value={shop.averageRating}
 							precision={0.1}
 							readOnly
 							size="small"
@@ -37,7 +37,7 @@ export default function ShopItem({ item, _id }) {
 						/>
 					</div>
 					<div className="shop-item-categories">
-						{item.categories.map((category) => (
+						{shop.categories.map((category) => (
 							<Chip
 								key={category.categoryId}
 								label={category.categoryLabel}

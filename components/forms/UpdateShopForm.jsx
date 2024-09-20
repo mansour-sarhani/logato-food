@@ -663,7 +663,7 @@ export default function UpdateShopForm(props) {
 								values.hasDelivery ? (
 									<Typography>
 										دارای{" "}
-										<strong style={{ color: "#FF4500" }}>
+										<strong className="primary-text">
 											سرویس دلیوری
 										</strong>{" "}
 										است
@@ -671,7 +671,7 @@ export default function UpdateShopForm(props) {
 								) : (
 									<Typography>
 										دارای{" "}
-										<strong style={{ color: "#FF4500" }}>
+										<strong className="primary-text">
 											سرویس دلیوری
 										</strong>{" "}
 										نیست

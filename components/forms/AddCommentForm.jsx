@@ -29,16 +29,13 @@ export default function AddCommentForm(props) {
 	const { enqueueSnackbar } = useSnackbar();
 
 	const {
-		shopId,
-		shopName,
+		shop,
+		user,
 		productId,
 		productName,
-		userId,
-		userName,
 		commentOn,
 		isOriginalComment,
 		handleClose,
-		setDoReload,
 	} = props;
 
 	const validate = (values) => {
@@ -54,8 +51,6 @@ export default function AddCommentForm(props) {
 		return errors;
 	};
 
-	// console.log(userId);
-
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -66,10 +61,10 @@ export default function AddCommentForm(props) {
 				const data = {
 					body: values.body,
 					rating: values.rating,
-					userId: userId,
-					userName: userName,
-					shopId: shopId,
-					shopName: shopName,
+					userId: user.id,
+					userName: user.firstName,
+					shopId: shop.id,
+					shopName: shop.name,
 					productId: productId,
 					productName: productName,
 					commentOn: commentOn,
@@ -79,7 +74,6 @@ export default function AddCommentForm(props) {
 				setSubmitting(false);
 				setValue(null);
 				resetForm();
-				setDoReload(true);
 				handleClose(true);
 			}}
 		>

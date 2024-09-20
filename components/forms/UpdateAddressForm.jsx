@@ -184,14 +184,14 @@ export default function UpdateAddressForm(props) {
 								values.default ? (
 									<Typography>
 										به عنوان آدرس فعلی{" "}
-										<strong style={{ color: "#FF4500" }}>
+										<strong className="primary-text">
 											باشد
 										</strong>
 									</Typography>
 								) : (
 									<Typography>
 										به عنوان آدرس فعلی{" "}
-										<strong style={{ color: "#FF4500" }}>
+										<strong className="primary-text">
 											نباشد
 										</strong>
 									</Typography>

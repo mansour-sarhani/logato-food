@@ -4,96 +4,37 @@ import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useDispatch, useSelector } from "react-redux";
 import getShopById from "@/functions/shop/getShopById";
-import userUnbookmarkShop from "@/functions/user/userUnbookmarkShop";
-import userBookmarkShop from "@/functions/user/userBookmarkShop";
-import userUnbookmarkProduct from "@/functions/user/userUnbookmarkProduct";
-import userBookmarkProduct from "@/functions/user/userBookmarkProduct";
-import ProductModal from "@/components/shop/ProductModal";
 import LTProgress from "@/components/global/LTProgress";
 import LTImage from "@/components/global/LTImage";
 import ProductItem from "@/components/shop/ProductItem";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import Paper from "@mui/material/Paper";
 import ShopInfo from "@/components/shop/ShopInfo";
 import ShopComments from "@/components/shop/ShopComments";
+import Bookmark from "@/components/global/Bookmark";
+import Typography from "@mui/material/Typography";
+import Rating from "@mui/material/Rating";
 
 export default function ShopSinglePage({ id }) {
 	const [shop, setShop] = useState(null);
-	const [doReload, setDoReload] = useState(true);
-	const [selectedItemId, setSelectedItemId] = useState(null);
-	const [selectedProduct, setSelectedProduct] = useState(null);
-	const [openModal, setOpenModal] = useState(false);
-	const [bookmarkedShops, setBookmarkedShops] = useState();
-	const [bookmarkedProducts, setBookmarkedProducts] = useState();
 
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 
 	const user = useSelector((state) => state.user.data);
 
-	const handleClickOpen = (itemId) => {
-		setSelectedItemId(itemId);
-		setOpenModal(true);
-	};
-
-	const isBookmarked = (id, type) => {
-		if (type === "shop") {
-			return bookmarkedShops.includes(id);
-		} else if (type === "product") {
-			return bookmarkedProducts.includes(id);
-		}
-	};
-
-	const handleBookmark = (id, type, isBookmarked) => () => {
-		if (type === "shop") {
-			if (isBookmarked) {
-				async function unbookmarkShop() {
-					await userUnbookmarkShop(dispatch, enqueueSnackbar, id);
-				}
-				unbookmarkShop();
-			} else {
-				async function bookmarkShop() {
-					await userBookmarkShop(dispatch, enqueueSnackbar, id);
-				}
-				bookmarkShop();
-			}
-		} else if (type === "product") {
-			if (isBookmarked) {
-				async function unbookmarkProduct() {
-					await userUnbookmarkProduct(dispatch, enqueueSnackbar, id);
-				}
-				unbookmarkProduct();
-			} else {
-				async function bookmarkProduct() {
-					await userBookmarkProduct(dispatch, enqueueSnackbar, id);
-				}
-				bookmarkProduct();
-			}
-		}
-	};
-
 	useEffect(() => {
-		if (id && !shop) {
+		if (id) {
 			async function fetchShop() {
 				getShopById(dispatch, enqueueSnackbar, id, setShop);
 			}
 			fetchShop();
 		}
-	}, [id, shop]);
+	}, [id]);
 
 	useEffect(() => {
 		if (shop) {
 			document.title = shop.name;
 		}
 	}, [shop]);
-
-	useEffect(() => {
-		if (user) {
-			setBookmarkedProducts(user.bookmark.products);
-			setBookmarkedShops(user.bookmark.shops);
-		}
-	}, [user]);
 
 	return !shop ? (
 		<LTProgress />
@@ -111,22 +52,26 @@ export default function ShopSinglePage({ id }) {
 									name={shop.cover}
 									alt={shop.name}
 									width={870}
-									height={300}
+									height={370}
 								/>
-								<div className="shop-identity">
-									<div className="shop-logo">
-										<LTImage
-											name={shop.logo}
-											alt={shop.name}
-											width={100}
-											height={100}
-											variant="circle"
-										/>
-									</div>
+							</div>
+							<div className="shop-heading">
+								<div className="shop-logo">
+									<LTImage
+										name={shop.logo}
+										alt={shop.name}
+										width={80}
+										height={80}
+										variant="circle"
+									/>
+								</div>
+								<div className="shop-name">
 									<div className="shop-title">
 										<Typography variant="h1">
 											{shop.name}
 										</Typography>
+
+										<Bookmark id={shop.id} type="shop" />
 									</div>
 									<div className="shop-rating">
 										<Rating
@@ -156,39 +101,13 @@ export default function ShopSinglePage({ id }) {
 										</Typography>
 										<div className="shop-products-grid">
 											{category.items.map((product) => (
-												<Paper
+												<ProductItem
 													key={product._id}
-													id={product._id}
-													elevation={1}
-													onClick={() => {
-														handleClickOpen(
-															product._id
-														);
-														setSelectedProduct(
-															product
-														);
-													}}
-												>
-													<ProductItem
-														product={product}
-													/>
-												</Paper>
-											))}
-											{selectedItemId && (
-												<ProductModal
-													product={selectedProduct}
-													openModal={openModal}
-													setOpenModal={setOpenModal}
-													shopId={shop.id}
-													shopName={shop.name}
+													product={product}
+													shop={shop}
 													user={user}
-													setDoReload={setDoReload}
-													isBookmarked={isBookmarked}
-													handleBookmark={
-														handleBookmark
-													}
 												/>
-											)}
+											))}
 										</div>
 									</div>
 								))}
@@ -196,14 +115,7 @@ export default function ShopSinglePage({ id }) {
 						</div>
 					</div>
 					<div className="secondary-sidebar">
-						<ShopComments
-							shop={shop}
-							user={user}
-							isBookmarked={isBookmarked}
-							handleBookmark={handleBookmark}
-							doReload={doReload}
-							setDoReload={setDoReload}
-						/>
+						<ShopComments shop={shop} user={user} />
 					</div>
 				</div>
 			</div>

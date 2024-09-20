@@ -65,8 +65,8 @@ export default function SearchPage() {
 								<NoData />
 							) : (
 								<div className="search-results-grid">
-									{data.map((item) => (
-										<ShopItem item={item} key={item.id} />
+									{data.map((shop) => (
+										<ShopItem key={shop.id} shop={shop} />
 									))}
 								</div>
 							)}

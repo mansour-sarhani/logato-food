@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
-import getCommentsByStatus from "@/functions/comment/getCommentsByStatus";
-import getAllComments from "@/functions/comment/getAllComments";
+import adminGetAllComments from "@/functions/comment/adminGetAllComments";
+import adminGetCommentsByStatus from "@/functions/comment/adminGetCommentsByStatus";
 import useSetStatusLabel from "@/hooks/useSetStatusLabel";
 import { dateFormatter } from "@/utils/dateFormatter";
 import PanelModal from "@/components/panel/PanelModal";
@@ -54,7 +54,7 @@ export default function CommentsPage() {
 		if (doReload) {
 			if (status === "all") {
 				async function fetchComments() {
-					await getAllComments(
+					await adminGetAllComments(
 						dispatch,
 						enqueueSnackbar,
 						setComments
@@ -63,7 +63,7 @@ export default function CommentsPage() {
 				fetchComments();
 			} else {
 				async function fetchCommentsByStatus() {
-					await getCommentsByStatus(
+					await adminGetCommentsByStatus(
 						dispatch,
 						enqueueSnackbar,
 						status,
@@ -202,7 +202,7 @@ export default function CommentsPage() {
 									<TableRow
 										style={{ height: 53 * emptyRows }}
 									>
-										<TableCell colSpan={7} />
+										<TableCell colSpan={8} />
 									</TableRow>
 								)}
 							</TableBody>
@@ -210,7 +210,7 @@ export default function CommentsPage() {
 								rows={comments}
 								rowsPerPage={rowsPerPage}
 								page={page}
-								colSpan={7}
+								colSpan={8}
 								handleChangePage={handleChangePage}
 								handleChangeRowsPerPage={
 									handleChangeRowsPerPage

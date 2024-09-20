@@ -53,7 +53,6 @@ export async function POST(req) {
 						product.totalRating / product.ratingsCount;
 					await product.save();
 
-					// Find the shop and update the product within the shop's products
 					const shop = await Shop.findById(commentData.shopId);
 					if (shop) {
 						for (const menuCategory of shop.products) {
@@ -131,7 +130,7 @@ export async function POST(req) {
 	}
 }
 
-function formatComment(comment) {
+function extractCommentDetails(comment) {
 	return {
 		id: comment._id,
 		value: comment.value,
@@ -178,7 +177,7 @@ export async function GET(request) {
 			}
 
 			return NextResponse.json(
-				{ success: true, data: formatComment(comment) },
+				{ success: true, data: extractCommentDetails(comment) },
 				{ status: 200 }
 			);
 		} else if (shopId) {
@@ -188,7 +187,13 @@ export async function GET(request) {
 				commentOn: "shop",
 			});
 
-			const filteredComments = comments.map(formatComment);
+			const publishedComments = comments.filter(
+				(comment) => comment.status === "published"
+			);
+
+			const filteredComments = publishedComments.map(
+				extractCommentDetails
+			);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },
@@ -201,7 +206,13 @@ export async function GET(request) {
 				commentOn: "product",
 			});
 
-			const filteredComments = comments.map(formatComment);
+			const publishedComments = comments.filter(
+				(comment) => comment.status === "published"
+			);
+
+			const filteredComments = publishedComments.map(
+				extractCommentDetails
+			);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },
@@ -214,7 +225,13 @@ export async function GET(request) {
 				commentOn: "product",
 			});
 
-			const filteredComments = comments.map(formatComment);
+			const publishedComments = comments.filter(
+				(comment) => comment.status === "published"
+			);
+
+			const filteredComments = publishedComments.map(
+				extractCommentDetails
+			);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },
@@ -226,7 +243,7 @@ export async function GET(request) {
 				userId: userId,
 			});
 
-			const filteredComments = comments.map(formatComment);
+			const filteredComments = comments.map(extractCommentDetails);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },
@@ -238,7 +255,7 @@ export async function GET(request) {
 				status: status,
 			});
 
-			const filteredComments = comments.map(formatComment);
+			const filteredComments = comments.map(extractCommentDetails);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },
@@ -248,7 +265,13 @@ export async function GET(request) {
 			//GET ALL COMMENTS => "/api/comment"
 			const comments = await Comment.find({});
 
-			const filteredComments = comments.map(formatComment);
+			const publishedComments = comments.filter(
+				(comment) => comment.status === "published"
+			);
+
+			const filteredComments = publishedComments.map(
+				extractCommentDetails
+			);
 
 			return NextResponse.json(
 				{ success: true, data: filteredComments },

@@ -15,7 +15,7 @@ export const metadata = {
 export default function PanelProfile() {
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
-			<UserProfilePage />;
+			<UserProfilePage />
 		</Suspense>
 	);
 }

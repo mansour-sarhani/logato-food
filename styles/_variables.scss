@@ -2,52 +2,33 @@
 $primary-color: #FF6347;
 $secondary-color: #FFD700;
 
-/* Accent Colors */
-$accent-color: #FF4500;
-$highlight-color: #32CD32;
-
 /* Status Colors */
 $success-color: #28a745; 
 $warning-color: #ffc107; 
 $info-color: #17a2b8; 
 $error-color: #dc3545; 
 
-/* Dark Mode Status Colors */
-$success-color-dark: #28a745; 
-$warning-color-dark: #ffc107; 
-$info-color-dark: #17a2b8; 
-$error-color-dark: #dc3545; 
-
 /* Text Colors */
-$text-dark: #333333;
-$text-light: #FFFFFF;
+$light-text-color: #333333;
+$dark-text-color: #828690;
+$text-black-color: #000000;
+$text-white-color: #FFFFFF;
+$dark-heading-color: #ced4da;
 
 /* Background Colors */
-$background-light: #F5F5F5;
-$background-dark: #2F4F4F;
+$light-bg-color: #ededed;
+$dark-bg-color: #0d1015;
+$dark-card-color: #14171c;
 
 /* Border Color */
-$border-color: #D1D1D1;
-
-/* Dark Mode Colors */
-$primary-color-dark: #FF6347; 
-$secondary-color-dark: #FFD700; 
-$accent-color-dark: #FF4500; 
-$highlight-color-dark: #32CD32; 
-
-$text-dark-mode: #E0E0E0; // Light grey for text in dark mode
-$text-light-mode: #FFFFFF; // White for text in dark mode
-
-$background-light-mode: #121212; // Very dark grey for dark mode background
-$background-dark-mode: #1E1E1E; // Dark grey for dark mode background
-
-$border-color-dark: #444444; // Dark grey for borders in dark mode
+$light-border-color: #D1D1D1;
+$dark-border-color: #2d2d2d;
 
 /* Form Input Colors */
-$input-background-light: #FFFFFF;
-$input-background-dark: #333333;
-$input-text-light: #333333;
-$input-text-dark: #E0E0E0;
+$light-input-bg-color: #FFFFFF;
+$dark-input-bg-color: #333333;
+$light-input-text-color: #333333;
+$dark-input-text-color: #E0E0E0;
 
 /* Border Radius */
 $border-radius-small: 4px;

@@ -169,6 +169,7 @@ a {
 	border-bottom-right-radius: 4px !important;
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
+	border-left: none !important;
 }
 
 .MuiButtonGroup-lastButton {
@@ -176,7 +177,7 @@ a {
 	border-bottom-right-radius: 0 !important;
 	border-top-left-radius: 4px !important;
 	border-bottom-left-radius: 4px !important;
-	border-right: 0 !important;
+	border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 .MuiToggleButtonGroup-firstButton {
@@ -184,6 +185,7 @@ a {
 	border-bottom-right-radius: 4px !important;
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
+	border-left: none !important;
 }
 
 .MuiToggleButtonGroup-lastButton {

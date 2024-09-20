@@ -61,21 +61,15 @@ export default function ShopInfo({ shop }) {
 			<div className="shop-single-row">
 				<MopedIcon />
 				<label>سرویس دلیوری:</label>
-				<Typography variant="body1">
-					{shop.hasDelivery ? (
-						<Chip
-							icon={<CheckCircleIcon />}
-							label={"بله"}
-							color="success"
-						/>
-					) : (
-						<Chip
-							icon={<CancelIcon />}
-							label={"خیر"}
-							color="error"
-						/>
-					)}
-				</Typography>
+				{shop.hasDelivery ? (
+					<Chip
+						icon={<CheckCircleIcon />}
+						label={"بله"}
+						color="success"
+					/>
+				) : (
+					<Chip icon={<CancelIcon />} label={"خیر"} color="error" />
+				)}
 			</div>
 			<div className="shop-single-row">
 				<NavigationIcon />
