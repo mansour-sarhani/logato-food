@@ -282,13 +282,6 @@ export async function DELETE(req) {
 			);
 		}
 
-		if (user.addresses[addressIndex].default) {
-			return NextResponse.json(
-				{ success: false, message: "آدرس پیش فرض قابل حذف نیست." },
-				{ status: 400 }
-			);
-		}
-
 		user.addresses.splice(addressIndex, 1);
 
 		user.markModified("addresses");

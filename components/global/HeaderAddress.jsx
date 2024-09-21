@@ -66,11 +66,11 @@ export default function HeaderAddress() {
 		}
 	}, [doReload]);
 
-	useEffect(() => {
-		if (addresses) {
-			setSelectedAddressId(addresses.find((addr) => addr.default)._id);
-		}
-	}, [addresses]);
+	// useEffect(() => {
+	// 	if (addresses) {
+	// 		setSelectedAddressId(addresses.find((addr) => addr.default)._id);
+	// 	}
+	// }, [addresses]);
 
 	return (
 		addresses && (
