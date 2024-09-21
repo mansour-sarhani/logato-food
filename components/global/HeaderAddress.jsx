@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState, useSelector } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import Button from "@mui/material/Button";
@@ -15,6 +15,7 @@ import FormControl from "@mui/material/FormControl";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import userUpdateAddress from "@/functions/user/userUpdateAddress";
 import getUserAddresses from "@/functions/user/getUserAddresses";
+import Link from "next/link";
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -25,8 +26,6 @@ export default function HeaderAddress() {
 	const [selectedAddressId, setSelectedAddressId] = useState();
 	const [open, setOpen] = useState(false);
 	const [doReload, setDoReload] = useState(true);
-
-	const user = useSelector((state) => state.user.data);
 
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
@@ -69,14 +68,10 @@ export default function HeaderAddress() {
 	}, [doReload]);
 
 	useEffect(() => {
-		if (user) {
-			if (addresses) {
-				setSelectedAddressId(
-					addresses.find((addr) => addr.default)._id
-				);
-			}
+		if (addresses && addresses.length !== 0) {
+			setSelectedAddressId(addresses.find((addr) => addr.default)._id);
 		}
-	}, [user, addresses]);
+	}, [addresses]);
 
 	return (
 		addresses && (
@@ -95,7 +90,9 @@ export default function HeaderAddress() {
 							</Typography>
 						</div>
 					) : (
-						"آدرس خود را انتخاب کنید"
+						<Typography variant="body2">
+							انتخاب آدرس فعلی
+						</Typography>
 					)}
 				</div>
 				<Dialog
@@ -132,19 +129,30 @@ export default function HeaderAddress() {
 								</RadioGroup>
 							</FormControl>
 						) : (
-							"آدرس خود را انتخاب کنید"
+							<Typography variant="body2">
+								شما هنوز آدرس خود را اضافه نکرده اید. برای اضافه
+								کردن آدرس به{" "}
+								<Link href="/panel/profile">پنل کاربری</Link>{" "}
+								مراجعه کنید.
+							</Typography>
 						)}
 					</DialogContent>
 					<DialogActions>
 						<Button color="error" onClick={handleClose}>
 							بستن
 						</Button>
-						<Button
-							variant="contained"
-							onClick={saveNewDefaultAddress}
-						>
-							ذخیره
-						</Button>
+						{addresses.length !== 0 ? (
+							<Button
+								variant="contained"
+								onClick={saveNewDefaultAddress}
+							>
+								ذخیره
+							</Button>
+						) : (
+							<Button variant="contained">
+								<Link href="/panel/profile">پنل کاربری</Link>
+							</Button>
+						)}
 					</DialogActions>
 				</Dialog>
 			</>
