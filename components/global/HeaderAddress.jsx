@@ -26,6 +26,8 @@ export default function HeaderAddress() {
 	const [open, setOpen] = useState(false);
 	const [doReload, setDoReload] = useState(true);
 
+	const user = useSelector((state) => state.user.data);
+
 	const dispatch = useDispatch();
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -58,19 +60,23 @@ export default function HeaderAddress() {
 
 	useEffect(() => {
 		if (doReload) {
-			async function getAddresses() {
+			async function fetchAddresses() {
 				await getUserAddresses(dispatch, enqueueSnackbar, setAddresses);
 			}
-			getAddresses();
+			fetchAddresses();
 			setDoReload(false);
 		}
 	}, [doReload]);
 
-	// useEffect(() => {
-	// 	if (addresses) {
-	// 		setSelectedAddressId(addresses.find((addr) => addr.default)._id);
-	// 	}
-	// }, [addresses]);
+	useEffect(() => {
+		if (user) {
+			if (addresses) {
+				setSelectedAddressId(
+					addresses.find((addr) => addr.default)._id
+				);
+			}
+		}
+	}, [user, addresses]);
 
 	return (
 		addresses && (
