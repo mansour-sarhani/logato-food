@@ -6,6 +6,7 @@ const initialState = {
 	error: null,
 	theme: "light",
 	lang: "fa",
+	viewPort: "desktop",
 };
 
 export const publicSlice = createSlice({
@@ -22,9 +23,13 @@ export const publicSlice = createSlice({
 			state.lang = lang;
 			localStorage.setItem("lang", lang);
 		},
+		setViewPort: (state, action) => {
+			const viewPort = action.payload.viewPort;
+			state.viewPort = viewPort;
+		}
 	},
 });
 
-export const { toggleTheme, toggleLanguage } = publicSlice.actions;
+export const { toggleTheme, toggleLanguage, setViewPort } = publicSlice.actions;
 
 export default publicSlice.reducer;
