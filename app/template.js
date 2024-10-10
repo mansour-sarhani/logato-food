@@ -88,9 +88,11 @@ export default function RootTemplate({ children }) {
                     <div className="panel-header">
                         <Header isHome={isHome} isPanel={isPanel} />
                     </div>
-                    <div className="panel-sidebar">
-                        <PanelSidebar user={user} />
-                    </div>
+                    {isDesktop && (
+                        <div className="panel-sidebar">
+                            <PanelSidebar user={user} />
+                        </div>
+                    )}
                     <div className="panel-content">{children}</div>
                 </div>
             ) : (

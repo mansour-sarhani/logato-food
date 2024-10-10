@@ -12,6 +12,7 @@ import ShopComments from '@/components/shop/ShopComments';
 import Bookmark from '@/components/global/Bookmark';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
+import MobileShopSidebar from '@/layouts/sidebar/MobileShopSidebar';
 
 export default function ShopSinglePage({ id }) {
     const [shop, setShop] = useState(null);
@@ -20,6 +21,7 @@ export default function ShopSinglePage({ id }) {
     const { enqueueSnackbar } = useSnackbar();
 
     const user = useSelector((state) => state.user.data);
+    const viewPort = useSelector((state) => state.public.viewPort);
 
     useEffect(() => {
         if (id) {
@@ -42,10 +44,12 @@ export default function ShopSinglePage({ id }) {
         <div className="inner-page shop-single-page">
             <div className="lt-container">
                 <div className="page-wrapper front-page-wrapper">
-                    <div className="sidebar">
-                        <ShopInfo shop={shop} />
-                        <ShopComments shop={shop} user={user} />
-                    </div>
+                    {viewPort === 'desktop' && (
+                        <div className="sidebar">
+                            <ShopInfo shop={shop} />
+                            <ShopComments shop={shop} user={user} />
+                        </div>
+                    )}
                     <div className="content">
                         <div className="shop-single">
                             <div className="shop-cover">
@@ -121,6 +125,10 @@ export default function ShopSinglePage({ id }) {
                     </div>
                 </div>
             </div>
+
+            {viewPort === 'mobile' && (
+                <MobileShopSidebar user={user} shop={shop} />
+            )}
         </div>
     );
 }

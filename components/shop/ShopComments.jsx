@@ -30,8 +30,6 @@ export default function ShopComments({ shop, user }) {
         setDoReload(false);
     }, [doReload]);
 
-    console.log(user);
-
     return (
         <div className="shop-comments">
             <div className="shop-single-heading">
