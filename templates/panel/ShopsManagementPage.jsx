@@ -267,7 +267,7 @@ export default function ShopsManagementPage() {
                                                         href={`/shop/${shop.id}`}
                                                     >
                                                         <VisibilityIcon />
-                                                        مشاهده فروشگاه
+                                                        مشاهده
                                                     </Link>
                                                 </Button>
                                                 <Tooltip

@@ -9,7 +9,7 @@
 /* Light Mode */
 :root {
   --primary-color: #FF6347;
-  --secondary-color: #FFD700;
+  --secondary-color: #3A1772;
   --success-color: #28a745;
   --warning-color: #ffc107;
   --info-color: #17a2b8;
@@ -31,7 +31,7 @@
 
 /* Dark Mode */
 [data-theme=dark] {
-  --primary-color: #FFD700;
+  --primary-color: #3A1772;
   --secondary-color: #FF6347;
   --text-color: #828690;
   --heading-color: #ced4da;
@@ -1281,6 +1281,10 @@ button.view-button svg {
   margin-top: 10px;
 }
 
+.mobile-bottom-app-bar {
+  display: none;
+}
+
 /********** DARK THEME **********/
 /********** DARK THEME **********/
 /********** DARK THEME **********/
@@ -1419,6 +1423,310 @@ button.view-button svg {
 }
 .dark .MuiCircularProgress-root {
   color: var(--primary-color);
+}
+
+/********** RESPONSIVE STYLES **********/
+/********** RESPONSIVE STYLES **********/
+/********** RESPONSIVE STYLES **********/
+@media screen and (max-width: 480px) {
+  .lt-container {
+    width: 95%;
+    padding: 0 7px;
+    max-width: 768px;
+  }
+  .no-data img {
+    max-width: 100%;
+    height: auto;
+  }
+  .MuiDialog-paper {
+    min-width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .MuiDialog-paper .bg-black {
+    min-width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .mobile-toolbar {
+    justify-content: space-between;
+    height: 60px;
+  }
+  .mobile-toolbar .mobile-header-logo {
+    height: 60px;
+  }
+  .mobile-toolbar .mobile-header-logo a {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-toolbar .mobile-header-logo a img {
+    height: 40px;
+    width: auto;
+  }
+  .mobile-toolbar .mobile-header-btns button {
+    color: var(--text-black-color);
+    margin-right: 0;
+  }
+  .mobile-drawer {
+    width: 280px;
+  }
+  .mobile-drawer .MuiDrawer-paper {
+    width: 280px;
+    right: 0;
+    left: auto;
+  }
+  .mobile-drawer .mobile-drawer-header {
+    height: 60px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .mobile-drawer .mobile-drawer-header a {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-drawer .mobile-drawer-header a img {
+    height: 40px;
+    width: auto;
+  }
+  .mobile-drawer .mobile-drawer-menu {
+    padding: 20px;
+  }
+  .mobile-drawer .mobile-drawer-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-drawer .mobile-drawer-menu ul li {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+  }
+  .mobile-drawer .mobile-drawer-menu ul li:last-child {
+    border-bottom: none;
+  }
+  .mobile-drawer .mobile-drawer-menu ul li.menu-item.link-item a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+  }
+  .mobile-drawer .mobile-drawer-menu ul li.menu-item.button-item button {
+    padding: 0;
+    font-size: 16px;
+  }
+  .home-search-wrapper {
+    max-width: 100%;
+  }
+  .home-search-wrapper .search-form .search-input-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .home-search-wrapper .search-form .search-input-wrapper button {
+    width: 100%;
+  }
+  .shop-types-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .front-page-wrapper {
+    margin-top: 80px;
+    height: 100%;
+  }
+  .front-page-wrapper .sidebar {
+    display: none;
+  }
+  .front-page-wrapper .search-results-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .shop-single-page .page-wrapper .content {
+    width: 100%;
+  }
+  .shop-single-page .shop-logo img {
+    width: 60px;
+    height: 60px;
+  }
+  .shop-single-page .shop-name {
+    gap: 0;
+  }
+  .shop-single-page .shop-name .shop-title h1 {
+    font-size: 18px;
+  }
+  .shop-single-page .shop-products-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .product-modal-content .shop-product-item .shop-product-main {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .product-modal-content .shop-product-item .shop-product-main .shop-product-info .shop-product-header {
+    align-items: center;
+    justify-content: center;
+  }
+  .product-modal-content .shop-product-price {
+    justify-content: center;
+  }
+  .product-modal-content .shop-product-alt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-bottom-app-bar {
+    display: block;
+    position: relative;
+  }
+  .mobile-bottom-app-bar .mobile-footer {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0;
+  }
+  .mobile-bottom-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mobile-bottom-toolbar .mobile-bottom-util-button {
+    color: var(--text-color);
+  }
+  .mobile-bottom-toolbar .mobile-bottom-main-button {
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .mobile-bottom-drawer {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(100%);
+  }
+  .mobile-bottom-drawer .MuiDrawer-paper {
+    width: 100%;
+  }
+  .mobile-bottom-drawer .mobile-bottom-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .mobile-bottom-drawer .mobile-bottom-drawer-header .mobile-bottom-drawer-logo {
+    height: 50px;
+  }
+  .mobile-bottom-drawer .mobile-bottom-drawer-header .mobile-bottom-drawer-logo a {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-bottom-drawer .mobile-bottom-drawer-filters {
+    padding: 20px;
+  }
+  .mobile-bottom-drawer.open {
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 90px;
+    top: 0;
+    transform: translateY(0);
+    opacity: 1;
+    overflow-y: auto;
+  }
+  .mobile-shop-info {
+    padding: 20px;
+  }
+  .panel-page-wrapper {
+    padding-right: 0;
+  }
+  .panel-page-wrapper .panel-header {
+    height: 60px;
+    background-color: transparent;
+    margin-bottom: 20px;
+    border-bottom-right-radius: none;
+    box-shadow: none;
+  }
+  .panel-page-wrapper .panel-content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .panel-inner-header {
+    flex-direction: column;
+    gap: 10px;
+    border-right: none;
+    border-top: 5px solid var(--primary-color);
+  }
+  .panel-inner-header .panel-inner-header-text {
+    text-align: center;
+  }
+  .panel-inner-content .panel-view-row {
+    gap: 10px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .panel-grid-two {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .panel-new-img-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .state-city-input-wrapper {
+    gap: 10px;
+  }
+  .mobile-panel-menu {
+    padding: 20px;
+  }
+  .panel-filters {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .bookmark-shops-grid,
+  .bookmark-products-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  #bookmark-tabpanel-0 > .MuiBox-root,
+  #bookmark-tabpanel-1 > .MuiBox-root {
+    padding: 20px 0 0;
+  }
+  .auth-page-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    flex-direction: column-reverse;
+  }
+  .auth-page-container .auth-page-box {
+    width: 100%;
+  }
+  .auth-page-container .auth-page-image {
+    width: 100%;
+    min-width: 100%;
+  }
+  .dark .mobile-header,
+  .dark .mobile-footer {
+    background-color: var(--primary-color);
+  }
+  .dark .mobile-drawer .MuiDrawer-paper {
+    background-color: var(--bg-color);
+  }
+  .dark .mobile-toolbar .mobile-header-btns button {
+    color: var(--text-color);
+  }
+  .dark .mobile-bottom-toolbar .mobile-bottom-main-button {
+    background-color: var(--card-color);
+  }
+  .dark .mobile-bottom-toolbar .mobile-bottom-util-button {
+    color: var(--text-color);
+  }
+  .dark .mobile-bottom-drawer.open {
+    background-color: var(--bg-color);
+  }
+  .dark .panel-inner-content .panel-view-item-key {
+    color: var(--text-white-color);
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
